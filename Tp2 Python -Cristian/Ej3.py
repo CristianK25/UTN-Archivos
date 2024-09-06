@@ -12,12 +12,13 @@ def main():
         nro = int(input("Ingrese un numero de 3 digitos: "))
     print(sumar3Digitos(nro))
 
+
 def sumar3Digitos(nro):
-    unidad = nro%10
-    nro = int(nro/10)
-    decena = int(nro%10)
-    nro = int(nro/10)
-    centena = int(nro%10)
+    unidad = nro%10         #Calculo la unidad dividiendo por 10 asignado el resto a unidad
+    nro = int(nro/10)       #Divido el nro por 10 para eliminar la unidad
+    decena = int(nro%10)    #Calculo la Decena dividiendo por 10 asignado el resto a centena
+    nro = int(nro/10)       #Divido el nro por 10 para eliminar la centena
+    centena = int(nro%10)   #Calculo la Centena con el resto de dividir por 10 nro
     return unidad + decena + centena
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+
 def ingresar_numero():
     valorDecimal = float(input("Ingrese un valor decimal: "))
     convertir_a_int(valorDecimal)

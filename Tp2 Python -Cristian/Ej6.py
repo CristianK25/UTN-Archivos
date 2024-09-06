@@ -1,6 +1,6 @@
 def tamañoCadena(cadena):
     print(f"Tamaño de la frase: {cadena}")
-    print(len("La lluvia en Mendoza es escasa"))
+    print(len("La lluvia en Mendoza es escasa"))    #Tamaño de la cadena con el metodo len()
 
 
 def main():

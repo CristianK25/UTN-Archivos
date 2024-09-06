@@ -4,9 +4,9 @@ def main():
 
 
 def recursion(cadena,i = 0):
-    if i == len(cadena):
+    if i == len(cadena): #Caso base
         return 
-    else:
+    else:   #Caso recursivo
         print(cadena[i])
         recursion(cadena,i+1)
 

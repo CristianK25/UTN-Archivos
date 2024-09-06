@@ -5,11 +5,11 @@ def main():
 
 
 def recursion(nro):
-    if (nro > 1):
-        print(nro," + ",end="")
-        nro += recursion(nro - 1)
+    if (nro > 1):#Caso base
+        print(nro," + ",end="") #Imprime los numeros que se van a sumar
+        nro += recursion(nro - 1) #Caso recursivo
     else:
-        print(nro,end="")
+        print(nro,end="") #end = "" Imprime el numero sin salto de linea
         return 1
     return nro
 

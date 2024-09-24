@@ -8,10 +8,7 @@ import java.util.Scanner;
  * @author windows
  */
 public class Ejercicio14 {
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         Random random = new Random();
         int numero = random.nextInt(11);

@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author windows
  */
 public class Ejercicio14 {
-    
+
     public static void main(String[] args) {
         Random random = new Random();
         int numero = random.nextInt(11);

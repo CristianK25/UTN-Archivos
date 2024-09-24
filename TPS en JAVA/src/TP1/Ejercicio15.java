@@ -8,7 +8,9 @@ public class Ejercicio15 {
         int num = new Scanner(System.in).nextInt();
 
         //Divisibilidad 2
-
+        if (num%2==0){
+            System.out.println("Es divisible por 2");
+        }
         //Divisibilidad 3
 
         //Divisibilidad 5

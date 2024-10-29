@@ -1,4 +1,4 @@
-import Celda
+from Celda import Celda
 class Matriz:
     def __init__(self):
         self.celdasMatriz = []

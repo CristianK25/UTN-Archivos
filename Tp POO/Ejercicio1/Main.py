@@ -1,4 +1,6 @@
-import Matriz,Celda
+from Matriz import Matriz
+from Celda  import Celda
+
 def main():
     matriz  = Matriz()
     while(True):

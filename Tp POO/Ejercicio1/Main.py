@@ -1,5 +1,6 @@
 from Matriz import Matriz
 from Celda  import Celda
+from metodos import numeroPositivoEntero
 
 def main():
     matriz  = Matriz()
@@ -13,8 +14,8 @@ def ingresarValores(matriz):
     valor = input("Ingrese el valor: ")
     if (valor ==  "FIN"):
         return True
-    fila = int(input("Ingrese la fila: "))
-    columna = int(input("Ingrese la columna: "))
+    fila = numeroPositivoEntero("Ingrese la fila:")
+    columna = numeroPositivoEntero("Ingrese la columna: ")
     matriz.ingresarCeldas(fila,columna,valor)
     return  False
 

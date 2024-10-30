@@ -1,4 +1,5 @@
 from Alumno import Alumno
+from metodos import numeroPositivoEntero,numeroPositivoFlotante
 from Nota import Nota
 class CargaNotas: 
     lista_alumnos = []
@@ -14,13 +15,13 @@ class CargaNotas:
             nombre = input("Ingrese el nombre completo del alumno: ")
             if nombre == "FIN":
                 break
-            legajo = int(input("Ingresa el legajo  del alumno: "))
+            legajo = numeroPositivoEntero("Ingrese el legajo: ")
             while(True):
                 lista_notas = list()
                 cantNotas = int(input("Ingresa la cantidad de notas: "))
                 for  i in range(cantNotas):
                     catedra =  input("Ingrese la catedra: ")
-                    nota = float(input(f"Ingrese la nota {i+1}: "))
+                    nota = numeroPositivoFlotante(f"Ingrese la nota {i+1}: ")
                     nota1 = Nota(catedra,nota)
                     lista_notas.append(nota1)
                 if  len(lista_notas) == cantNotas:

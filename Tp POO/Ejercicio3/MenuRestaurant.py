@@ -9,13 +9,14 @@ class MenuRestaurant:
         print("\t---\nBienvenido al menu del restaurante X\n\t---")
         MenuRestaurant.cargarPlatos()
         os.system("cls")
-        print("\--tMENU COMPLETO--\n")
+        print("\t--MENU COMPLETO--\n")
         MenuRestaurant.mostrarPlatos()
 
     @staticmethod
     def cargarPlatos():
         cantidadPlatos = numeroPositivoEntero("Ingrese la cantidad de platos: ")
         for i in  range(cantidadPlatos):
+            print("-------------------\n")
             nombre = input("Ingrese el nombre del plato: ")
             precio = numeroPositivoEntero(f"Ingrese el precio de {nombre}: ")
             bebida = input("¿Es una bebida? (True/False): ")

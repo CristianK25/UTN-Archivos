@@ -13,5 +13,5 @@ class Plato:
 
     #notas_str = ", ".join(str(nota) for nota in self.notas)
     def __str__(self):
-        ingr = "".join([str(ing) for ing in self.listaIngredientes])
-        return f"\t\nPlato: {self.name},\n\t Precio: {self.precio},\n\t Ingredientes: {ingr}"
+        ingr = "\n".join([str(ing) for ing in self.listaIngredientes])
+        return f"\t\nPlato: {self.name},\n\t Precio: {self.precio},\n\t Ingredientes:\n{ingr}"

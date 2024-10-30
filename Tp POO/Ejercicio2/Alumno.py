@@ -9,4 +9,5 @@ class Alumno:
         self.notas = notas
     
     def __str__(self):
-        return  f"---\nNombre: {self.nombreCompleto},\nLegajo: {self.legajo},\nNotas: {self.notas}\n---"
+        notas_str = ", ".join(str(nota) for nota in self.notas)
+        return  f"---\nNombre: {self.nombreCompleto},\nLegajo: {self.legajo},\nNotas: {notas_str}\n---"

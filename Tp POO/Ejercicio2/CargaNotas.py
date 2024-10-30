@@ -33,6 +33,6 @@ class CargaNotas:
     @staticmethod
     def mostrar():
         for i in  range(len(CargaNotas.lista_alumnos)):############
-            print(i)
+            print(CargaNotas.lista_alumnos[i])
 
 CargaNotas.main()

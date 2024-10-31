@@ -5,8 +5,11 @@ class Plato:
         self.esBebida = esBebida
         self.listaIngredientes = []
 
-    def  agregarIngredientes(self, ingrediente):
-        self.listaIngredientes.append(ingrediente)
+    def  agregarIngredientes(self, ingredientes):
+        if isinstance(ingredientes,list):
+            self.listaIngredientes.extend(ingredientes)
+        else:
+            self.listaIngredientes.append(ingredientes)
 
     def getEsBebida(self):
         return self.esBebida

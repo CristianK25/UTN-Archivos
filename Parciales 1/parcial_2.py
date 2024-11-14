@@ -1,4 +1,3 @@
-
 lista_articulos = [
     [101, "Leche", 250],
     [102, "Gaseosa", 300],

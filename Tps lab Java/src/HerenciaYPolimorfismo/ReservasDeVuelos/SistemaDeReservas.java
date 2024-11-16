@@ -8,7 +8,7 @@ public class SistemaDeReservas {
     public static void main(String[] args) {
         String saludo = "Hay dos promociones disponibles\n¡¡Si elige el vuelo Charter hay un 10% de descuento\n" +
                 "¡¡Si elige el vuelo regular, tiene un 15% de descuento con 50 asientos o mas";
-        JOptionPane.showMessageDialog(null, saludo,"Bienvenido a Areolineas X", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, saludo,"Bienvenido a Aereolineas X", JOptionPane.PLAIN_MESSAGE);
         ingresarVuelos();
         mostrarReservas();
     }

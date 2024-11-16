@@ -13,16 +13,11 @@ public class Reservas {
         return vuelos.size();
     }
 
-    public void aplicarPromociones(){
-        for (Vuelos vuelo : vuelos) {
-            vuelo.calcularPrecio();
-        }
-    }
-
     public void mostrarVuelos() {
         System.out.println("----------");
         for (Vuelos vuelo : vuelos) {
             System.out.println(vuelo);
+            System.out.println("Precio total con descuento = " + vuelo.calcularPrecio());
             System.out.println("----------");
         }
     }

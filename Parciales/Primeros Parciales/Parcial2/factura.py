@@ -27,8 +27,12 @@ def main():
     solicitarFechaNumero(factura)
     factura["cliente"] = solicitarCuit(factura)
     solicitarArticulo(factura)
-
+    calcularTotal(factura)
+    calcularIva(factura)
+    letraFactura(factura)
+    calcularTotalConIva(factura)
     print(factura)
+
 
 def crearFactura():
     return {
@@ -74,8 +78,29 @@ def solicitarArticulo(factura):
             print("Articulo no encontrado. Por favor, ingrese el codigo nuevamente.")
 
 def calcularTotal(factura):
+    total = 0
     for articulo in factura["detalles"]:
-        factura["total"] += articulo[4]
+        total += articulo[4]
+    factura["total"] = total
+
+
+def calcularIva(factura):
+    if ( factura["cliente"][:2] in ["20","27"] or factura["cliente"] == "Consumidor Final"):
+        factura["monto_iva"] = 0
+    elif(factura["cliente"][:2] in ["30","33"]):
+        factura["monto_iva"] = factura["total"] * 0.21
+
+def letraFactura(factura):
+    if ( factura["cliente"][:2] in ["20","27"] or factura["cliente"] == "Consumidor Final"):
+        factura["letra"] = "B"
+    elif(factura["cliente"][:2] in ["30","33"]):
+        factura["letra"] = "A"
+    
+def calcularTotalConIva(factura):
+    if (factura["letra"]== "A"):
+        factura["total"] += factura["monto_iva"]
+
+
 #METODO PARA MAIN
 if __name__ == "__main__":
     main()

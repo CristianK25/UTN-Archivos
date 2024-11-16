@@ -33,6 +33,6 @@ public class VueloRegular extends Vuelos implements Promocionable{
                 "\nDestino = '" + destino + '\'' +
                 "\nFecha = '" + fecha + '\'' +
                 "\nNumero de asientos = " + numeroAsientos +
-                "Precio = "+ precio;
+                "\nPrecio por asiento = "+ precio;
     }
 }

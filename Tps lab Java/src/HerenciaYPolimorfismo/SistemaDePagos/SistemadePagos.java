@@ -32,25 +32,26 @@ public class SistemadePagos {
 
     public static void elegirOperacion(){
         String[] opciones = {"Realizar Pago","Cancelar Pago","Mostrar Pagos","Salir"};
-        int opcion = 0;
-        int numero = 0;
+        int reinicio;
         do{
-            opcion = JOptionPane.showOptionDialog(null,"Eliga una operacion","OPERACION",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,opciones,null);
-            switch (opcion){
-                case 1:
-                    numero = Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese el numero del metodo para realizar "+opciones[opcion],"NUMERO PARA OPERACION",JOptionPane.INFORMATION_MESSAGE));
-                    pagos.realizarPago(numero);
-                    break;
-                case 2:
-                    numero = Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese el numero del metodo para realizar "+opciones[opcion],"NUMERO PARA OPERACION",JOptionPane.INFORMATION_MESSAGE));
-                    pagos.cancelarPagos(numero);
-                    break;
-                case 3:
-                    pagos.mostrarPagos();
-                    break;
-                default:
-                    System.out.println("Salir");
+            reinicio = JOptionPane.showOptionDialog(null,"Eliga una operacion","Operaciones",
+                    JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null,opciones,opciones[0]);
+            if (reinicio != 3 && reinicio!=2){
+                String decision = "Ingrese el numero de cuenta para "+ opciones[reinicio];
+                int numero = Integer.parseInt(JOptionPane.showInputDialog(decision));
+                switch (reinicio){
+                    case 0:
+                        pagos.realizarPago(numero);
+                        break;
+                    case 1:
+                        pagos.cancelarPagos(numero);
+                        break;
+                }
+            } else if (reinicio == 2) {
+                pagos.mostrarPagos();
             }
-        }while (opcion !=4);
+        }while(reinicio !=3);
+        System.out.println("Programa FINALIZADO");
+
     }
 }

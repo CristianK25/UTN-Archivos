@@ -14,12 +14,14 @@ public class TarjetaCredito extends MetodoPago implements Cancelable{
 
     @Override
     public void realizarPago() {
-        JOptionPane.showMessageDialog(null,"Pago Realizado con Tarjeta de Credito\nNumero del Pago:" + numero);
+        JOptionPane.showMessageDialog(null,"Pago Realizado con Tarjeta de Credito" +
+                "\nNumero del Pago: " + numero + "\nTitular: " + super.titular);
     }
 
     @Override
     public void cancelarPago() {
-        JOptionPane.showMessageDialog(null,"Pago Cancelado desde Tarjeta de Credito\nNumero de tarjeta:" + numero);
+        JOptionPane.showMessageDialog(null,"Pago Cancelado desde Tarjeta de Credito" +
+                "\nNumero de tarjeta:" + numero +  "\nTitular: " + super.titular);
     }
 
     @Override

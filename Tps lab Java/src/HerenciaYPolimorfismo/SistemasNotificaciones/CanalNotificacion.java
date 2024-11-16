@@ -10,13 +10,10 @@ public abstract class CanalNotificacion {
         this.mensaje = mensaje;
     }
 
-    public abstract void enviarNotificacion();
-
-    @Override
-    public String toString() {
-        return "CanalNotificacion{" +
-                "usuario='" + usuario + '\'' +
-                ", mensaje='" + mensaje + '\'';
+    public String getUsuario() {
+        return usuario;
     }
+
+    public abstract void enviarNotificacion();
 
 }

@@ -14,12 +14,14 @@ public class Paypal extends MetodoPago implements Cancelable{
 
     @Override
     public void realizarPago() {
-        JOptionPane.showMessageDialog(null,"Pago Realizado con Paypal\nNumero del Pago:" + numero);
+        JOptionPane.showMessageDialog(null,"Pago Realizado con Paypal" +
+                "\nNumero del Pago:" + numero + "\nTitular: " + super.titular);
     }
 
     @Override
     public void cancelarPago() {
-        JOptionPane.showMessageDialog(null,"Pago Cancelado desde Paypal\nNumero del Pago:" + numero);
+        JOptionPane.showMessageDialog(null,"Pago Cancelado desde Paypal" +
+                "\nNumero del Pago:" + numero + "\nTitular: " + super.titular);
     }
 
     @Override

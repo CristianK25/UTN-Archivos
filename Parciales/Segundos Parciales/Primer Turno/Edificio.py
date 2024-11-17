@@ -5,8 +5,10 @@ class Edificio:
         self.totalCC = 0.0
         self.lista_pisos = []
 
-    def totalMetrosCuiertos():
-        pass
-    
-    def totalCostoConstruccion():
-        pass
+    def calcular_total_metros_cubiertos(self):
+        self.totalMC = sum(piso.calcular_total_metros_cubiertos() for piso in self.lista_pisos)
+        return self.totalMC
+
+    def calcular_total_costo_construccion(self):
+        self.totalCC = sum(piso.calcular_total_costo_construccion() for piso in self.lista_pisos)
+        return self.totalCC

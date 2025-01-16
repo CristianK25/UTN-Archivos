@@ -51,7 +51,7 @@ public class SistemadePagos {
                 pagos.mostrarPagos();
             }
         }while(reinicio !=3);
-        System.out.println("Programa FINALIZADO");
+        System.out.println("Programa.PesoIdeal.Programa FINALIZADO");
 
     }
 }

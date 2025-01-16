@@ -1,0 +1,80 @@
+¡Claro! Aquí tienes un **nuevo ejercicio** que es diferente al anterior. Esta vez, el tema será sobre **tu videojuego favorito**. El ejercicio incluirá algunos elementos nuevos y omitirá otros para que sea un desafío fresco. 😊
+
+---
+
+### **Ejercicio: Crear una página web sobre tu videojuego favorito**
+
+#### **Requisitos:**
+1. **Título de la página**:
+   - La página debe tener un título que se muestre en la pestaña del navegador.
+
+2. **Encabezado principal**:
+   - Debe haber un encabezado grande con el nombre de tu videojuego favorito.
+
+3. **Párrafo de descripción**:
+   - Escribe un párrafo que describa de qué trata el videojuego. Resalta el nombre del estudio desarrollador en negrita y enfatiza una frase clave en cursiva.
+
+4. **Lista de características principales**:
+   - Crea una lista ordenada con al menos 3 características principales del videojuego (por ejemplo, gráficos, jugabilidad, historia, etc.).
+
+5. **Imagen relacionada**:
+   - Agrega una imagen relacionada con el videojuego. La imagen debe tener un texto alternativo que describa su contenido.
+
+6. **Enlace externo**:
+   - Proporciona un enlace a una página web donde se pueda obtener más información sobre el videojuego (por ejemplo, la página oficial o un artículo de Wikipedia).
+
+7. **Formato adicional**:
+   - Usa un formato especial para mostrar el año de lanzamiento del videojuego (por ejemplo, subíndice o superíndice).
+   - Subraya una palabra o frase que consideres importante.
+
+8. **Texto pequeño**:
+   - Agrega una nota al final de la página en letra pequeña que diga: "Esta página fue creada como ejercicio de práctica de HTML".
+
+---
+
+### **Pistas visuales (sin decirte las etiquetas):**
+- Piensa en cómo estructurarías el contenido: ¿qué elementos usarías para títulos, párrafos, listas, etc.?
+- ¿Cómo resaltarías texto en negrita o cursiva?
+- ¿Cómo insertarías una imagen o un enlace?
+- ¿Cómo aplicarías formatos especiales como subíndices, superíndices o texto subrayado?
+
+---
+
+### **Ejemplo de cómo podría verse el contenido (sin código):**
+
+---
+
+**Mi Videojuego Favorito: The Legend of Zelda: Breath of the Wild**
+
+**Descripción**:  
+_The Legend of Zelda: Breath of the Wild_ es un juego de acción y aventura desarrollado por **Nintendo**. La historia sigue a Link, quien despierta después de un sueño de 100 años para derrotar a Ganon y salvar el reino de Hyrule. Una frase que resume la experiencia es: _"El mundo está lleno de secretos esperando a ser descubiertos"_.
+
+**Características principales**:
+1. Mundo abierto enorme y detallado.
+2. Jugabilidad no lineal que fomenta la exploración.
+3. Gráficos impresionantes con un estilo artístico único.
+
+**Imagen**:  
+[Imagen de Link explorando Hyrule]
+
+**Más información**:  
+Para saber más sobre el juego, visita [The Legend of Zelda: Breath of the Wild en Wikipedia](https://es.wikipedia.org/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild).
+
+**Año de lanzamiento**:  
+El juego se lanzó en 2017<sup>1</sup>.  
+_Una secuela está en desarrollo_.
+
+**Nota**:  
+<small>Esta página fue creada como ejercicio de práctica de HTML.</small>
+
+---
+
+### **Desafío adicional:**
+1. **Agrega una tabla**:
+   - Crea una tabla con información adicional sobre el videojuego, como la plataforma, el género y la calificación.
+
+2. **Incluye un video**:
+   - Inserta un video de tráiler del juego usando un enlace de YouTube.
+
+3. **Experimenta con más etiquetas de formato**:
+   - Prueba usar `<u>` para subrayar texto o `<code>` para mostrar código.

@@ -1,0 +1,49 @@
+body {
+    background-image: url(fondoboca.jpg);
+    background-size: cover;
+    background-position: center center;
+    height: 1800px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: rgb(78, 15, 15);
+    text-align: center;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+
+ul {
+    list-style-position: inside;
+    padding-left: 0;
+    text-align: center;
+    font-size: 1.2em; /* Usar unidades relativas */
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse; /* Fusiona los bordes de la tabla */
+}
+
+th, td {
+    border: 1px solid rgb(151, 28, 28);
+    padding: 8px; /* Aumentar el padding para mejor legibilidad */
+}
+
+.descripcion {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.nota {
+    font-size: 0.9em;
+}

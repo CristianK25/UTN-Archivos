@@ -7,13 +7,45 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Universidad HTML</h1>
+    <header class="cabeza">
+      <h1>Universidad HTML</h1>
+    </header>
     <hr />
-    <a href="index.html">Inicio</a>
-    <span>|</span>
-    <a href="contacto.html">Contacto</a>
-    <span>|</span>
-    <a href="acerca.html">Acerca De</a>
+    
+    <div class="vinculos">
+      <a href="index.html">Inicio</a>
+      <span>|</span>
+      <a href="contacto.html">Contacto</a>
+      <span>|</span>
+      <a href="acerca.html">Acerca De</a>
+    </div>
     <p>Bienvenidos al curso de Universidad HTML</p>
+
+  
+    <table>
+      <tr>
+        <th scope="col">Horario Atencion</th>
+        <th scope="col">Lunes a viernes</th>
+        <th scope="col">Feriados</th>
+        <th scope="col">Sabados y Domingos</th>
+      </tr>
+      <tr>
+        <th scope="row">8am a 12pm</th>
+        <td>Disponible</td>
+        <td>No disponible</td>
+        <td>Disponible</td>
+      </tr>
+      <tr>
+        <th scope="row">1pm a 5pm</th>
+        <td colspan="2">Disponible</td>
+        <td >No disponible</td>
+      </tr>
+      <tr>
+        <th scope="row">6pm a 12pm</th>
+        <td>No disponible</td>
+        <td colspan="2">Disponible</td>
+      </tr>
+    </table>
+  
   </body>
 </html>

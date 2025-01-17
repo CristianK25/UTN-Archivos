@@ -6,7 +6,7 @@ body{
 h1 {
   font-size: 50px;
 }
-a,span,p {
+span,p {
   font-size: x-large;
   color: beige;
 }
@@ -43,4 +43,23 @@ td{
   color: white;
   border: 2px solid black;
   text-align: right;
+}
+
+/* COLORES DE LOS LINKS */
+a:link{
+  color: bisque;
+  text-decoration: none;
+}
+
+a:visited{
+  color: dodgerblue;
+  text-decoration: none;
+}
+
+a:hover{
+  color: darkcyan;
+}
+
+a:active{
+  color: moccasin;
 }

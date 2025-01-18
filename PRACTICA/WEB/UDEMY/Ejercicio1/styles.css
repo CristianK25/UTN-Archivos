@@ -28,12 +28,10 @@ td{
   color: chartreuse;
 }
 
-.vinculos{
-  background-color: rgb(11, 11, 105);
-  border: 2px solid black;
-  text-align: center;
-  margin: auto 50px;
+td:hover{
+  transform: translate(10px);
 }
+
 .cabeza{
   background-color: rgb(11, 11, 105);
   background-size: cover;
@@ -46,20 +44,16 @@ td{
 }
 
 /* COLORES DE LOS LINKS */
-a:link{
+a:link, a:visited {
   color: bisque;
   text-decoration: none;
+  padding: 15px 25px;
+  background-color: midnightblue;
+  display: inline-block;
 }
 
-a:visited{
-  color: dodgerblue;
-  text-decoration: none;
-}
-
-a:hover{
-  color: darkcyan;
-}
-
-a:active{
-  color: moccasin;
+a:hover, a:active{
+  color: midnightblue;
+  background-color: darkcyan;
+  transform: translateY(-15px);
 }

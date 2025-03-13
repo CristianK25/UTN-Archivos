@@ -12,4 +12,12 @@ public class Ciudad {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public boolean isEsCapital() {
+        return esCapital;
+    }
+
+    public void setEsCapital(boolean esCapital) {
+        this.esCapital = esCapital;
+    }
 }

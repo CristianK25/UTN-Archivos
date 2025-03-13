@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48ff60f1-a4a2-4e05-858a-46fd12a5e02c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Parcial 2/PrimerTurno/Main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Parcial 2/SegundoTurno/Main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,16 +26,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.SistemaNotificaciones.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SistemadePagos.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/krahu/Desktop/UTN/UTN-Archivos/Tps lab Java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SistemaNotificaciones.executor": "Run",
+    "Application.SistemadePagos.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/krahu/Desktop/UTN/UTN-Archivos/Progamacion2"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.SistemaNotificaciones">
     <configuration name="SistemaNotificaciones" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HerenciaYPolimorfismo.SistemasNotificaciones.SistemaNotificaciones" />

@@ -1,4 +1,4 @@
 package Figuras;
 
-public class Rectangulo {
+public class Rectangulo extends Cuadrilatero{
 }

@@ -1,4 +1,4 @@
 package Figuras;
 
-public class Circulo {
+public class Circulo extends Elipse{
 }

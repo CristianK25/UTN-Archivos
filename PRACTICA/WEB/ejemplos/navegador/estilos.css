@@ -1,0 +1,33 @@
+body {
+    background-color: #003049;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+    background-color: #669bbc;
+    padding: 0; /* Quitamos el padding del ul para evitar desbordamientos */
+    flex-direction: row-reverse;
+    height: 60px; /* Alto del ul */
+    align-items: center; /* Centra los elementos verticalmente */
+}
+
+li {
+    height: 100%; /* Los li ocupan todo el alto del ul */
+}
+
+li a, li a:visited {
+    color: #003049;
+    height: 100%; /* Los enlaces ocupan todo el alto del li */
+    padding: 20px; /* Padding interno */
+    background-color: #669bbc;
+    display: flex;
+    align-items: center; /* Centra el texto verticalmente */
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    box-sizing: border-box; /* Incluye el padding en el tamaño total */
+}
+
+li a:hover, li a:active {
+    background-color: #00b4d8;
+    color: #90e0ef;
+}

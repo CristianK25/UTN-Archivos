@@ -1,0 +1,89 @@
+Parcial 2 – POO Python
+Parque Recreativo “Vida Verde”
+
+La empresa "Vida Verde" desea construir un parque recreativo en un terreno de 5 hectáreas (50,000 metros cuadrados). Antes de iniciar la construcción, necesitan realizar el análisis de costos de las distintas áreas y actividades del parque. El sistema debe cumplir los siguientes requisitos:
+
+1. Clases a implementar (en archivos separados)
+Clase: Parque
+    Atributos:
+    nombre (cadena): Nombre del parque.
+    totalMetrosConstruidos (decimal): Superficie total cubierta (calculada).
+    totalCostoConstruccion (decimal): Costo total de construcción (calculado).
+    listaDeSectores (lista de objetos Sector).
+    Métodos:
+    totalMetrosConstruidos: Devuelve la superficie total construida en el parque.
+    totalCostoConstruccion: Devuelve el costo total de construcción.
+Clase: Sector
+    Atributos:
+    nombreSector (cadena): Nombre del sector.
+    listaDeAtracciones (lista de objetos Atraccion).
+    Métodos:
+    totalMetrosSector: Devuelve el total de metros cuadrados ocupados por el sector.
+Clase: Atraccion
+    Atributos:
+    tipoAtraccion (cadena): Nombre de la atracción (ejemplo: "Juegos Infantiles").
+    metrosCuadrados (decimal): Superficie ocupada por la atracción.
+    costoAtraccion (decimal): Costo de construcción de la atracción.
+Clase: AnalisisParque (main)
+    Atributos:
+    catalogoAtracciones (lista bidimensional): Representa los costos y superficies de las atracciones disponibles. Utilice la tabla a continuación:
+
+CODIGO ATRACCION          ATRACCION              METROS CUADRADOS    COSTO CONSTRUCCION  
+AAA                      Juegos Infantiles       500                 200,000  
+BBB                      Zona de Picnic          800                 150,000  
+CCC                      Lago Artificial         2,000               1,000,000  
+DDD                      Jardines Temáticos      1,500               600,000  
+EEE                      Circuito de Caminata    3,000               800,000  
+FFF                      Zona Deportiva          2,500               900,000  
+GGG                      Espacio Cultural        1,000               500,000  
+
+    2. Lógica a Implementar
+Crear un Parque asignándole un nombre.
+
+totalMetrosConstruidos y totalCostoConstruccion serán calculados dinámicamente.
+Indicar la cantidad de sectores del parque (mínimo 2, máximo 8).
+
+Asignar un nombre único para cada sector.
+Para cada sector:
+
+Asignar al menos 2 atracciones, validando que:
+Las atracciones no se repitan en el mismo sector.
+El total de metros cuadrados de todas las atracciones no exceda los 50,000 metros cuadrados del terreno.
+Elegir las atracciones del catalogoAtracciones, asignando su superficie y costo correspondiente.
+Calcular y mostrar:
+
+Total de metros cuadrados construidos.
+Costo total de construcción.
+Costo promedio por metro cuadrado.
+    3. Validaciones
+El parque no puede ocupar más de 50,000 metros cuadrados en total.
+Cada sector debe incluir al menos 2 atracciones.
+Ninguna atracción puede repetirse dentro de un mismo sector.
+    4. Formato de Salida
+
+----------Parque Recreativo------------  
+Nombre: Vida Verde  
+Total Metros Construidos: XXXXX m²  
+Total Costo de Construcción: $ XXXXXX  
+Costo Promedio por Metro Cuadrado: $ XXXX  
+----------Sectores--------------------  
+Sector: Diversión Infantil  
+---Atracciones---  
+Juegos Infantiles: 500 m²  
+Costo Construcción: $200,000  
+Zona de Picnic: 800 m²  
+Costo Construcción: $150,000  
+Total Metros del Sector: 1,300 m²  
+-----------------------------  
+Sector: Espacios Naturales  
+---Atracciones---  
+Jardines Temáticos: 1,500 m²  
+Costo Construcción: $600,000  
+Lago Artificial: 2,000 m²  
+Costo Construcción: $1,000,000  
+Total Metros del Sector: 3,500 m²  
+---Repetir para todos los sectores---  
+--------------------------------------  
+TOTAL METROS CONSTRUIDOS: XXXXX m²  
+TOTAL COSTO DE CONSTRUCCIÓN: $XXXXXX  
+COSTO PROMEDIO POR METRO CUADRADO: $ XXXX  

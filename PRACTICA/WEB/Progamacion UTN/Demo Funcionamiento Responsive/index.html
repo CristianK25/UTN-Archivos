@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo de Posiciones CSS</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <div class="header">
+    <h1>🎯 Demo Interactiva de Posiciones CSS</h1>
+    <p>Desplázate por la página para ver cómo interactúan las diferentes posiciones</p>
+  </div>
+
+  <!-- ====== STATIC ====== -->
+  <div class="demo-section static-demo">
+    <div class="section-title">1. POSITION: STATIC (Por defecto)</div>
+    <div class="contenedor">
+      <div class="caja caja1">STATIC 1</div>
+      <div class="caja caja2">STATIC 2</div>
+      <p style="margin: 20px 0;">Los elementos siguen el flujo normal del documento.</p>
+    </div>
+    <div class="info-box">
+      <strong>STATIC:</strong> Es la posición por defecto. Los elementos se colocan en el orden que aparecen en el HTML. <span class="highlight">No se ve afectado por top, bottom, left, right</span>.
+    </div>
+  </div>
+
+  <!-- ====== RELATIVE ====== -->
+  <div class="demo-section relative-demo">
+    <div class="section-title">2. POSITION: RELATIVE</div>
+    <div class="contenedor">
+      <div class="caja caja-normal">POSICIÓN ORIGINAL</div>
+      <div class="caja caja-relative">RELATIVE (top: 30px, left: 50px)</div>
+      <p style="margin: 20px 0;">La caja verde se movió desde su posición original, pero conserva su espacio.</p>
+    </div>
+    <div class="info-box">
+      <strong>RELATIVE:</strong> Se mueve respecto a su posición original, pero <span class="highlight">mantiene su espacio en el flujo del documento</span>. Otros elementos no lo ocupan.
+    </div>
+  </div>
+
+  <!-- ====== ABSOLUTE ====== -->
+  <div class="demo-section absolute-demo">
+    <div class="section-title">3. POSITION: ABSOLUTE</div>
+    <div class="contenedor">
+      <div class="caja caja-normal">NORMAL FLOW</div>
+      <div class="caja caja-absolute">ABSOLUTE (top: 20px, right: 20px)</div>
+      <p style="margin: 20px 0;">La caja naranja se posiciona respecto al contenedor padre (position: relative).</p>
+    </div>
+    <div class="info-box">
+      <strong>ABSOLUTE:</strong> Se posiciona respecto al ancestro más cercano que tenga position diferente a static. <span class="highlight">Se retira del flujo del documento</span>.
+    </div>
+  </div>
+
+  <!-- ====== FIXED ====== -->
+  <div class="demo-section fixed-demo">
+    <div class="section-title">4. POSITION: FIXED</div>
+    <div class="contenedor">
+      <div class="caja caja-fixed">FIXED (top: 20px, right: 20px)</div>
+      <p style="margin: 20px 0;">La caja morada permanece fija en la pantalla mientras haces scroll. ¡Mira la esquina superior derecha! 👆</p>
+    </div>
+    <div class="info-box">
+      <strong>FIXED:</strong> Se posiciona respecto a la ventana del navegador. <span class="highlight">Permanece fijo al hacer scroll</span>. Perfecto para menús o botones que siempre deben estar visibles.
+    </div>
+  </div>
+
+  <!-- ====== STICKY ====== -->
+  <div class="demo-section sticky-demo">
+    <div class="section-title">5. POSITION: STICKY</div>
+    <div class="caja caja-sticky">STICKY (top: 20px) - ¡Desplázate hacia abajo!</div>
+    <div class="scroll-content">
+      <div>
+        <h2>🔽 SIGUE DESPLAZÁNDOTE 🔽</h2>
+        <p>La caja amarilla se "pegará" cuando llegue a top: 20px de la ventana</p>
+        <p style="margin-top: 100px;">¿Ya se pegó? ¡Sigue bajando para ver más ejemplos!</p>
+      </div>
+    </div>
+    <div class="info-box">
+      <strong>STICKY:</strong> Es una combinación de relative y fixed. <span class="highlight">Se comporta como relative hasta que alcanza una posición específica, entonces se "pega" como fixed</span>.
+    </div>
+  </div>
+
+  <!-- ====== CONTENIDO ADICIONAL PARA SCROLL ====== -->
+  <div style="height: 500px; background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2c3e50; font-size: 24px; font-weight: bold; text-align: center;">
+    <div>
+      <p>🎉 ¡Excelente! Ya viste todas las posiciones CSS</p>
+      <p style="font-size: 16px; margin-top: 20px;">Nota cómo la caja FIXED (morada) siempre está visible<br>y la caja STICKY (amarilla) se pegó arriba</p>
+    </div>
+  </div>
+
+  <div style="height: 300px; background: #2c3e50; border-radius: 10px; margin-top: 20px; display: flex; align-items: center; justify-content: center; color: white;">
+    <h2>🔚 Fin del Demo - ¡Vuelve arriba para repasar!</h2>
+  </div>
+</body>
+</html>

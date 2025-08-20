@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Display CSS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .demo-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            background: #2c3e50;
+            color: white;
+            padding: 12px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 10px 10px 0 0;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .demo-container {
+            border: 2px dashed #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .info-box {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: #f39c12;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        /* ====== ELEMENTOS DE DEMOSTRACIÓN ====== */
+        .elemento {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* ====== 1. DISPLAY: BLOCK ====== */
+        .block-demo .elemento {
+            display: block;
+            background: #e74c3c;
+            width: 200px;
+        }
+
+        /* ====== 2. DISPLAY: INLINE ====== */
+        .inline-demo .elemento {
+            display: inline;
+            background: #27ae60;
+            /* width y height NO funcionan en inline */
+            width: 200px; /* Esto se ignora */
+            height: 50px; /* Esto se ignora */
+        }
+
+        /* ====== 3. DISPLAY: INLINE-BLOCK ====== */
+        .inline-block-demo .elemento {
+            display: inline-block;
+            background: #3498db;
+            width: 120px;
+            height: 60px;
+        }
+
+        /* ====== 4. DISPLAY: NONE ====== */
+        .none-demo .visible {
+            display: block;
+            background: #95a5a6;
+        }
+
+        .none-demo .hidden {
+            display: none; /* Este elemento no se ve ni ocupa espacio */
+            background: #e67e22;
+        }
+
+        .none-demo .after-hidden {
+            display: block;
+            background: #9b59b6;
+        }
+
+        /* ====== 5. DISPLAY: FLEX ====== */
+        .flex-demo .flex-container {
+            display: flex;
+            gap: 10px;
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .flex-demo .flex-item {
+            background: #f39c12;
+            padding: 15px;
+            border-radius: 5px;
+            flex: 1; /* Todos ocupan el mismo espacio */
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* ====== 6. DISPLAY: GRID ====== */
+        .grid-demo .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* 3 columnas iguales */
+            gap: 10px;
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .grid-demo .grid-item {
+            background: #8e44ad;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* ====== BOTÓN INTERACTIVO ====== */
+        .toggle-btn {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+        }
+
+        .toggle-element {
+            background: #e67e22;
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .grid-container {
+                grid-template-columns: 1fr 1fr; /* 2 columnas en móvil */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📱 Display CSS: Guía Completa</h1>
+        <p>Aprende cómo cada valor de display afecta el comportamiento de los elementos</p>
+    </div>
+
+    <!-- ====== 1. DISPLAY: BLOCK ====== -->
+    <div class="demo-section block-demo">
+        <div class="section-title">1. display: block</div>
+        <div class="demo-container">
+            <div class="elemento">Elemento 1 (block)</div>
+            <div class="elemento">Elemento 2 (block)</div>
+            <div class="elemento">Elemento 3 (block)</div>
+        </div>
+        <div class="info-box">
+            <strong>BLOCK:</strong> Cada elemento <span class="highlight">ocupa toda la línea disponible</span>. Se apilan verticalmente. Acepta width, height, margin y padding en todas las direcciones.
+            <br><br><strong>Elementos naturalmente block:</strong> div, p, h1-h6, section, article, header, footer
+        </div>
+    </div>
+
+    <!-- ====== 2. DISPLAY: INLINE ====== -->
+    <div class="demo-section inline-demo">
+        <div class="section-title">2. display: inline</div>
+        <div class="demo-container">
+            <div class="elemento">Inline 1</div>
+            <div class="elemento">Inline 2</div>
+            <div class="elemento">Inline 3</div>
+            <p style="margin-top: 15px;"><strong>Nota:</strong> Aunque definí width: 200px y height: 50px en CSS, ¡se ignoran porque es inline!</p>
+        </div>
+        <div class="info-box">
+            <strong>INLINE:</strong> Los elementos <span class="highlight">se colocan en la misma línea</span> como el texto. NO acepta width/height. Solo margin/padding horizontal.
+            <br><br><strong>Elementos naturalmente inline:</strong> span, a, strong, em, img, input
+        </div>
+    </div>
+
+    <!-- ====== 3. DISPLAY: INLINE-BLOCK ====== -->
+    <div class="demo-section inline-block-demo">
+        <div class="section-title">3. display: inline-block</div>
+        <div class="demo-container">
+            <div class="elemento">Item 1</div>
+            <div class="elemento">Item 2</div>
+            <div class="elemento">Item 3</div>
+            <p style="margin-top: 15px;"><strong>¡Perfecto!</strong> Se colocan en línea PERO respetan width y height</p>
+        </div>
+        <div class="info-box">
+            <strong>INLINE-BLOCK:</strong> <span class="highlight">Lo mejor de ambos mundos</span>. Se comportan como inline (se colocan en línea) pero aceptan dimensiones como block.
+            <br><br><strong>Ideal para:</strong> Botones, cajas pequeñas en fila, navegación horizontal
+        </div>
+    </div>
+
+    <!-- ====== 4. DISPLAY: NONE ====== -->
+    <div class="demo-section none-demo">
+        <div class="section-title">4. display: none</div>
+        <div class="demo-container">
+            <div class="elemento visible">Elemento VISIBLE</div>
+            <div class="elemento hidden">Elemento OCULTO (no lo ves)</div>
+            <div class="elemento after-hidden">Elemento DESPUÉS del oculto</div>
+            <p style="margin-top: 15px;">El elemento naranja existe en el HTML pero está oculto con display: none</p>
+        </div>
+        <div class="info-box">
+            <strong>NONE:</strong> <span class="highlight">Oculta completamente el elemento</span>. No ocupa espacio, es como si no existiera.
+            <br><br><strong>Diferencia con visibility: hidden:</strong> visibility oculta pero mantiene el espacio, display: none no ocupa nada.
+        </div>
+    </div>
+
+    <!-- ====== 5. DISPLAY: FLEX ====== -->
+    <div class="demo-section flex-demo">
+        <div class="section-title">5. display: flex</div>
+        <div class="demo-container">
+            <div class="flex-container">
+                <div class="flex-item">Flex 1</div>
+                <div class="flex-item">Flex 2</div>
+                <div class="flex-item">Flex 3</div>
+            </div>
+        </div>
+        <div class="info-box">
+            <strong>FLEX:</strong> Crea un <span class="highlight">contenedor flexible</span>. Los hijos se distribuyen automáticamente. Control total sobre alineación, distribución y orden.
+            <br><br><strong>Ideal para:</strong> Layouts responsivos, centrar elementos, distribuir espacio
+        </div>
+    </div>
+
+    <!-- ====== 6. DISPLAY: GRID ====== -->
+    <div class="demo-section grid-demo">
+        <div class="section-title">6. display: grid</div>
+        <div class="demo-container">
+            <div class="grid-container">
+                <div class="grid-item">Grid 1</div>
+                <div class="grid-item">Grid 2</div>
+                <div class="grid-item">Grid 3</div>
+                <div class="grid-item">Grid 4</div>
+                <div class="grid-item">Grid 5</div>
+                <div class="grid-item">Grid 6</div>
+            </div>
+        </div>
+        <div class="info-box">
+            <strong>GRID:</strong> Crea un <span class="highlight">sistema de cuadrícula bidimensional</span>. Control preciso sobre filas y columnas.
+            <br><br><strong>Ideal para:</strong> Layouts complejos, galería de imágenes, diseño de páginas completas
+        </div>
+    </div>
+
+    <!-- ====== DEMO INTERACTIVO ====== -->
+    <div class="demo-section">
+        <div class="section-title">🎮 Demo Interactivo</div>
+        <div class="demo-container">
+            <button class="toggle-btn" onclick="toggleDisplay('block')">Block</button>
+            <button class="toggle-btn" onclick="toggleDisplay('inline')">Inline</button>
+            <button class="toggle-btn" onclick="toggleDisplay('inline-block')">Inline-Block</button>
+            <button class="toggle-btn" onclick="toggleDisplay('none')">None</button>
+            
+            <div id="toggle-element" class="toggle-element">
+                ¡Haz clic en los botones para cambiar mi display!
+            </div>
+            
+            <p id="current-display" style="font-weight: bold; margin-top: 10px;">
+                Display actual: <span style="color: #e74c3c;">block</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- ====== RESUMEN ====== -->
+    <div style="background: #2c3e50; color: white; padding: 30px; border-radius: 10px; margin-top: 30px; text-align: center;">
+        <h2>📚 Resumen Rápido</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                <strong>BLOCK:</strong> Una línea completa
+            </div>
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                <strong>INLINE:</strong> En la misma línea
+            </div>
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                <strong>INLINE-BLOCK:</strong> En línea + dimensiones
+            </div>
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                <strong>FLEX:</strong> Contenedor flexible
+            </div>
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                <strong>GRID:</strong> Sistema de cuadrícula
+            </div>
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                <strong>NONE:</strong> Completamente oculto
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDisplay(displayValue) {
+            const element = document.getElementById('toggle-element');
+            const currentDisplay = document.getElementById('current-display');
+            
+            element.style.display = displayValue;
+            currentDisplay.innerHTML = `Display actual: <span style="color: #e74c3c;">${displayValue}</span>`;
+            
+            // Añadir efecto visual
+            element.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 200);
+        }
+    </script>
+</body>
+</html>

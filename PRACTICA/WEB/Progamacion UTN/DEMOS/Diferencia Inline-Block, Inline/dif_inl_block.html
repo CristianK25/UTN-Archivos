@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline vs Inline-Block</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .comparison-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            background: #2c3e50;
+            color: white;
+            padding: 12px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 10px 10px 0 0;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .demo-container {
+            border: 2px solid #3498db;
+            padding: 20px;
+            margin: 15px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .demo-label {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* ====== ELEMENTOS BASE ====== */
+        .base-element {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            margin: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid #c0392b;
+        }
+
+        /* ====== COMPARATIVA 1: DIMENSIONES ====== */
+        .width-height-test .inline-element {
+            display: inline;
+            width: 200px;          /* Se ignora */
+            height: 80px;          /* Se ignora */
+            background: #27ae60;
+        }
+
+        .width-height-test .inline-block-element {
+            display: inline-block;
+            width: 200px;          /* Funciona */
+            height: 80px;          /* Funciona */
+            background: #3498db;
+        }
+
+        /* ====== COMPARATIVA 2: MARGIN ====== */
+        .margin-test .inline-element {
+            display: inline;
+            margin: 20px;          /* Solo left/right funcionan */
+            background: #27ae60;
+        }
+
+        .margin-test .inline-block-element {
+            display: inline-block;
+            margin: 20px;          /* Todos funcionan */
+            background: #3498db;
+        }
+
+        /* ====== COMPARATIVA 3: PADDING ====== */
+        .padding-test {
+            line-height: 1.2;
+        }
+
+        .padding-test .inline-element {
+            display: inline;
+            padding: 20px;         /* Top/bottom no empujan */
+            background: #27ae60;
+        }
+
+        .padding-test .inline-block-element {
+            display: inline-block;
+            padding: 20px;         /* Todos empujan correctamente */
+            background: #3498db;
+        }
+
+        /* ====== TEXTO NORMAL PARA REFERENCIAS ====== */
+        .reference-text {
+            background: #95a5a6;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin: 5px;
+            font-size: 14px;
+        }
+
+        /* ====== INFO BOXES ====== */
+        .comparison-table {
+            background: #ecf0f1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .comparison-table th {
+            background: #2c3e50;
+            color: white;
+            font-weight: bold;
+        }
+
+        .works { color: #27ae60; font-weight: bold; }
+        .fails { color: #e74c3c; font-weight: bold; }
+        .partial { color: #f39c12; font-weight: bold; }
+
+        .highlight-box {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+
+        .code-example {
+            background: #2c3e50;
+            color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            font-size: 14px;
+            line-height: 1.4;
+            overflow-x: auto;
+        }
+
+        .green { color: #2ecc71; }
+        .red { color: #e74c3c; }
+        .yellow { color: #f1c40f; }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .comparison-table { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚔️ INLINE vs INLINE-BLOCK</h1>
+        <p>Descubre las diferencias exactas entre estos dos displays</p>
+    </div>
+
+    <!-- ====== TABLA RESUMEN ====== -->
+    <div class="comparison-section">
+        <div class="section-title">📊 Tabla Comparativa Completa</div>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Propiedad</th>
+                        <th>INLINE</th>
+                        <th>INLINE-BLOCK</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>width</strong></td>
+                        <td class="fails">❌ Se ignora</td>
+                        <td class="works">✅ Funciona</td>
+                    </tr>
+                    <tr>
+                        <td><strong>height</strong></td>
+                        <td class="fails">❌ Se ignora</td>
+                        <td class="works">✅ Funciona</td>
+                    </tr>
+                    <tr>
+                        <td><strong>margin-top</strong></td>
+                        <td class="fails">❌ Se ignora</td>
+                        <td class="works">✅ Funciona</td>
+                    </tr>
+                    <tr>
+                        <td><strong>margin-bottom</strong></td>
+                        <td class="fails">❌ Se ignora</td>
+                        <td class="works">✅ Funciona</td>
+                    </tr>
+                    <tr>
+                        <td><strong>margin-left/right</strong></td>
+                        <td class="works">✅ Funciona</td>
+                        <td class="works">✅ Funciona</td>
+                    </tr>
+                    <tr>
+                        <td><strong>padding-top/bottom</strong></td>
+                        <td class="partial">⚠️ Se aplica pero NO empuja otros elementos</td>
+                        <td class="works">✅ Funciona y empuja elementos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>padding-left/right</strong></td>
+                        <td class="works">✅ Funciona</td>
+                        <td class="works">✅ Funciona</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Comportamiento</strong></td>
+                        <td>🔄 Fluye con el texto</td>
+                        <td>📦 Caja independiente en línea</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ====== DEMO 1: WIDTH Y HEIGHT ====== -->
+    <div class="comparison-section">
+        <div class="section-title">1. 📏 Width y Height</div>
+        
+        <div class="code-example">
+<span class="yellow">/* INLINE */</span>
+.elemento {
+    display: inline;
+    width: 200px;   <span class="red">/* ❌ SE IGNORA */</span>
+    height: 80px;   <span class="red">/* ❌ SE IGNORA */</span>
+}
+
+<span class="yellow">/* INLINE-BLOCK */</span>
+.elemento {
+    display: inline-block;
+    width: 200px;   <span class="green">/* ✅ FUNCIONA */</span>
+    height: 80px;   <span class="green">/* ✅ FUNCIONA */</span>
+}
+        </div>
+
+        <div class="demo-container width-height-test">
+            <div class="demo-label">INLINE</div>
+            <span class="reference-text">Texto antes</span>
+            <span class="inline-element">INLINE (width: 200px, height: 80px)</span>
+            <span class="reference-text">Texto después</span>
+        </div>
+
+        <div class="demo-container width-height-test">
+            <div class="demo-label">INLINE-BLOCK</div>
+            <span class="reference-text">Texto antes</span>
+            <span class="inline-block-element">INLINE-BLOCK (width: 200px, height: 80px)</span>
+            <span class="reference-text">Texto después</span>
+        </div>
+
+        <div class="highlight-box">
+            <strong>🎯 Observa:</strong> El elemento INLINE mantiene su tamaño natural, mientras que INLINE-BLOCK respeta las dimensiones definidas.
+        </div>
+    </div>
+
+    <!-- ====== DEMO 2: MARGIN ====== -->
+    <div class="comparison-section">
+        <div class="section-title">2. 📐 Margin (Espaciado Externo)</div>
+        
+        <div class="code-example">
+<span class="yellow">/* INLINE */</span>
+.elemento {
+    display: inline;
+    margin: 20px;   <span class="red">/* Solo left/right funcionan */</span>
+}
+
+<span class="yellow">/* INLINE-BLOCK */</span>
+.elemento {
+    display: inline-block;
+    margin: 20px;   <span class="green">/* Todos los lados funcionan */</span>
+}
+        </div>
+
+        <div class="demo-container margin-test">
+            <div class="demo-label">INLINE</div>
+            <span class="reference-text">Antes</span>
+            <span class="inline-element">INLINE (margin: 20px)</span>
+            <span class="reference-text">Después</span>
+        </div>
+
+        <div class="demo-container margin-test">
+            <div class="demo-label">INLINE-BLOCK</div>
+            <span class="reference-text">Antes</span>
+            <span class="inline-block-element">INLINE-BLOCK (margin: 20px)</span>
+            <span class="reference-text">Después</span>
+        </div>
+
+        <div class="highlight-box">
+            <strong>🎯 Observa:</strong> INLINE solo respeta margin horizontal, mientras que INLINE-BLOCK respeta margin en todas las direcciones.
+        </div>
+    </div>
+
+    <!-- ====== DEMO 3: PADDING ====== -->
+    <div class="comparison-section">
+        <div class="section-title">3. 🎨 Padding (Espaciado Interno)</div>
+        
+        <div class="code-example">
+<span class="yellow">/* INLINE */</span>
+.elemento {
+    display: inline;
+    padding: 20px;   <span class="yellow">/* Top/bottom se aplican pero NO empujan */</span>
+}
+
+<span class="yellow">/* INLINE-BLOCK */</span>
+.elemento {
+    display: inline-block;
+    padding: 20px;   <span class="green">/* Todos funcionan y empujan elementos */</span>
+}
+        </div>
+
+        <div class="demo-container padding-test">
+            <div class="demo-label">INLINE</div>
+            <span class="reference-text">Línea anterior</span><br>
+            <span class="reference-text">Antes</span>
+            <span class="inline-element">INLINE (padding: 20px)</span>
+            <span class="reference-text">Después</span><br>
+            <span class="reference-text">Línea siguiente</span>
+        </div>
+
+        <div class="demo-container padding-test">
+            <div class="demo-label">INLINE-BLOCK</div>
+            <span class="reference-text">Línea anterior</span><br>
+            <span class="reference-text">Antes</span>
+            <span class="inline-block-element">INLINE-BLOCK (padding: 20px)</span>
+            <span class="reference-text">Después</span><br>
+            <span class="reference-text">Línea siguiente</span>
+        </div>
+
+        <div class="highlight-box">
+            <strong>🎯 Observa:</strong> El padding vertical de INLINE se solapa con las líneas adyacentes, mientras que INLINE-BLOCK empuja correctamente todo el contenido.
+        </div>
+    </div>
+
+    <!-- ====== CUÁNDO USAR CADA UNO ====== -->
+    <div class="comparison-section">
+        <div class="section-title">🎯 ¿Cuándo usar cada uno?</div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+            <div style="background: #27ae60; color: white; padding: 20px; border-radius: 8px;">
+                <h3 style="margin-top: 0;">💚 USA INLINE cuando:</h3>
+                <ul>
+                    <li>El elemento debe fluir con el texto</li>
+                    <li>No necesitas dimensiones específicas</li>
+                    <li>Es para elementos como <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code></li>
+                    <li>Quieres que se comporte como texto normal</li>
+                </ul>
+            </div>
+            
+            <div style="background: #3498db; color: white; padding: 20px; border-radius: 8px;">
+                <h3 style="margin-top: 0;">💙 USA INLINE-BLOCK cuando:</h3>
+                <ul>
+                    <li>Necesitas elementos en línea CON dimensiones</li>
+                    <li>Quieres crear botones o cajas pequeñas</li>
+                    <li>Necesitas margin/padding que funcione en todas las direcciones</li>
+                    <li>Quieres navegación horizontal</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== EJEMPLOS PRÁCTICOS ====== -->
+    <div style="background: #2c3e50; color: white; padding: 30px; border-radius: 10px; margin-top: 30px;">
+        <h2 style="text-align: center; margin-top: 0;">🔥 Ejemplo Práctico Real</h2>
+        
+        <div class="code-example">
+<span class="yellow">/* ❌ MAL - Botones con inline */</span>
+.boton {
+    display: inline;
+    width: 120px;      <span class="red">/* No funciona */</span>
+    height: 40px;      <span class="red">/* No funciona */</span>
+    padding: 10px;     <span class="yellow">/* Padding vertical se solapa */</span>
+}
+
+<span class="yellow">/* ✅ BIEN - Botones con inline-block */</span>
+.boton {
+    display: inline-block;
+    width: 120px;      <span class="green">/* ✅ Funciona */</span>
+    height: 40px;      <span class="green">/* ✅ Funciona */</span>
+    padding: 10px;     <span class="green">/* ✅ Todo funciona perfecto */</span>
+}
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <p><strong>🧠 REGLA DE ORO:</strong></p>
+            <p style="font-size: 18px; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; display: inline-block;">
+                Si necesitas <strong>dimensiones específicas</strong> en elementos que van en línea → usa <strong>INLINE-BLOCK</strong>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

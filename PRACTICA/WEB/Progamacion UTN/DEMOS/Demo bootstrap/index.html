@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Primera Página con Bootstrap</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Mi Sitio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container my-5">
+        <!-- Hero section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="jumbotron bg-primary text-white p-5 rounded">
+                    <h1 class="display-4">¡Bienvenido a Bootstrap!</h1>
+                    <p class="lead">Este es un ejemplo práctico de cómo usar Bootstrap para crear una página web responsiva.</p>
+                    <button class="btn btn-light btn-lg">Comenzar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de tarjetas -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Fácil de usar</h5>
+                        <p class="card-text">Bootstrap te permite crear sitios web profesionales con solo agregar clases CSS.</p>
+                        <a href="#" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Responsivo</h5>
+                        <p class="card-text">Tu sitio se verá perfecto en móviles, tablets y computadoras de escritorio.</p>
+                        <a href="#" class="btn btn-success">Ver demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Personalizable</h5>
+                        <p class="card-text">Puedes modificar colores, espaciado y componentes según tus necesidades.</p>
+                        <a href="#" class="btn btn-warning">Personalizar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario de contacto -->
+        <div class="row mt-5">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="mb-0">Formulario de Contacto</h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Tu nombre">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="tu@email.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="mensaje" class="form-label">Mensaje</label>
+                                <textarea class="form-control" id="mensaje" rows="4" placeholder="Tu mensaje aquí..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alertas -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="alert alert-success" role="alert">
+                    <strong>¡Éxito!</strong> Has creado tu primera página con Bootstrap.
+                </div>
+                <div class="alert alert-info" role="alert">
+                    <strong>Tip:</strong> Cambia el tamaño de la ventana para ver cómo se adapta el diseño.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; 2024 Mi Primera Página Bootstrap. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

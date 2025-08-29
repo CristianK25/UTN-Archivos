@@ -8,7 +8,8 @@
 </head>
 <body>
     <nav>
-        <button class="nav-button" onclick="toggleMenu()">MENU</button>
+        <button class="nav-button" onclick="accion()">MENU</button>
+        <!--onclick="toggleMenu()" es para que al hacer click en el boton se ejecute la funcion toggleMenu() que esta en funcion.js-->   
         <div class="nav-links" id="navLinks">
             <a href="#" class="nav-enlace">Inicio</a>
             <a href="#" class="nav-enlace">Nosotros</a>
@@ -17,5 +18,11 @@
         </div>
     </nav>
     <script src="funcion.js"></script>
+
+    <script>
+        function accion(){
+            console.log("esta funcionando el boton");
+        }
+    </script>
 </body>
 </html>

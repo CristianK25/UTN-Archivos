@@ -3,23 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
+    <title>Gestión de Usuarios</title>
     <link rel="stylesheet" href="css/usuario.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <div class="login-container">
     <h2>Iniciar Sesión</h2>
-    <form action="/login" method="post">
+    <form id="formUsuario">
         <div class="form-group">
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" required />
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required />
         </div>
         <div class="form-group">
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" name="password" required />
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" required />
         </div>
-        <button type="submit">Entrar</button>
+        <div class="form-group">
+            <label for="contrasenia">Contraseña</label>
+            <input type="password" id="contrasenia" name="contrasenia" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Usuario</button>
     </form>
+
+    <h2>Lista de Usuarios</h2>
+    <table class="table table-bordered" id="tablaUsuarios">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Contraseña</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Usuarios se cargarán aquí -->
+        </tbody>
+    </table>
+    <button id="btnMostrarUsuario" class="btn btn-secondary">Mostrar Usuarios</button>
 </div>
+
+<script src="js/usuario.js"></script>
 </body>
 </html>

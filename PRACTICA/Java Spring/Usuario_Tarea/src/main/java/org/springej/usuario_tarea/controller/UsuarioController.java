@@ -5,6 +5,7 @@ import org.springej.usuario_tarea.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,6 +23,11 @@ public class UsuarioController {
     @GetMapping("buscarPorNombre")
     public Optional<Usuario> buscarUsuarioPorNombre(@RequestParam String nombre) {
         return service.buscarUsuario(nombre);
+    }
+
+    @GetMapping("listar")
+    public List<Usuario> listarUsuarios() {
+        return service.listarUsuarios();
     }
 
     @DeleteMapping("borrarUsuario")

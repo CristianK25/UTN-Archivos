@@ -1,0 +1,92 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' =========================
+' Paquetes
+' =========================
+package "capacidades" {
+  interface Conducible {
+    +conducir()
+  }
+  interface Navegable {
+    +navegar()
+  }
+  interface Asegurable {
+    +asegurar()
+  }
+  interface Pagable {
+    +pagar(monto: double)
+  }
+}
+
+package "vehiculos" {
+  abstract class Vehiculo {
+    #patente: String
+    #modelo: String
+    {abstract} +mover()
+  }
+
+  class Auto {
+    -cantidadPuertas: int
+    -tipoCombustible: String
+  }
+
+  class Moto {
+    -cilindrada: int
+  }
+
+  class Barco {
+    -esDeportiva: boolean
+    -eslora: double
+  }
+}
+
+package "personas" {
+  class Cliente {
+    -nombre: String
+    -dni: String
+  }
+}
+
+package "contratos" {
+  class ContratoAlquiler {
+    -fechaInicio: LocalDate
+    -dias: int
+    -precioPorDia: double
+    -pagado: boolean
+    +total(): double
+    +pagar(monto: double)
+  }
+}
+
+package "agencia" {
+  class Agencia {
+    -nombre: String
+  }
+}
+
+' =========================
+' Herencia (extends)
+' =========================
+Vehiculo <|-- Auto
+Vehiculo <|-- Moto
+Vehiculo <|-- Barco
+
+' =========================
+' Implementaciones (implements)
+' =========================
+Conducible <|.. Auto
+Conducible <|.. Moto
+Navegable  <|.. Barco
+Asegurable <|.. Auto
+Asegurable <|.. Moto
+Asegurable <|.. Barco
+Pagable    <|.. ContratoAlquiler
+
+' =========================
+' Relaciones
+' =========================
+Agencia "1" o-- "0..*" Vehiculo : flota
+ContratoAlquiler "1" --> "1" Vehiculo
+ContratoAlquiler "1" --> "1" Cliente
+@enduml

@@ -1,0 +1,20 @@
+El sistema modela el dominio de reservas de hotel utilizando los conceptos fundamentales de Programación Orientada a Objetos (POO) y diferentes tipos de relaciones entre clases.
+
+Ciudad – Hotel (Agregación):
+Una ciudad puede contener varios hoteles, pero el ciclo de vida de los hoteles es independiente. Es posible “mover” un hotel de una ciudad a otra, lo que refleja una relación de agregación débil.
+
+Hotel – Habitacion (Composición + 1–N bidireccional):
+Un hotel está compuesto por habitaciones que se crean dentro de él. Las habitaciones no tienen sentido fuera del hotel, lo que constituye una relación de composición fuerte. Además, la relación es bidireccional: el hotel conoce sus habitaciones y cada habitación conoce a su hotel.
+
+Cliente – Pasaporte (1–1 unidireccional):
+Un cliente posee un único pasaporte, y la relación se modela en un solo sentido. El cliente conoce a su pasaporte, pero el pasaporte no referencia de vuelta al cliente. Esto es un ejemplo de relación uno a uno unidireccional.
+
+Empleado – Legajo (1–1 bidireccional):
+Cada empleado tiene un legajo único y ambos extremos se conocen entre sí. Se trata de una relación uno a uno bidireccional, donde se mantiene la consistencia de los enlaces desde ambos lados.
+
+Hotel – Empleado (1–N unidireccional):
+Un hotel puede tener muchos empleados, pero los empleados no necesitan conocer al hotel. Se modela como una relación uno a muchos unidireccional.
+
+Reserva (Clase asociativa N–N con atributos propios):
+Una reserva vincula a un cliente con una habitación en determinadas fechas. Esta clase representa una relación muchos a muchos entre clientes y habitaciones, pero además incorpora información adicional como fecha de check-in, fecha de check-out y precio. Por eso se modela como clase asociativa.
+La reserva mantiene la navegación en ambos extremos: al crearla, se agrega tanto al cliente como a la habitación.

@@ -21,6 +21,7 @@ public class UsuarioService {
     public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
     }
+
     public Optional<Usuario> buscarUsuario(String nombre) {
         return usuarioRepository.findByNombre(nombre);
     }

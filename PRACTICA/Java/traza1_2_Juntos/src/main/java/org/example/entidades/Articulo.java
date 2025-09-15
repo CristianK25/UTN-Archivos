@@ -15,27 +15,26 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString
+@ToString(exclude = "sucursales")
 @Setter
 @SuperBuilder
-
 
 public class Articulo  {
     protected Long id;
     protected String denominacion;
     protected Double precioVenta;
 
-
+    @Builder.Default
+    protected List<Sucursal> sucursales = new HashSet<>();
 
     @Builder.Default
-
     protected Set<ImagenArticulo> imagenes = new HashSet<>();
 
+    @Builder.Default
+    private Categoria categoria;
 
     protected UnidadMedida unidadMedida;
 
-
-    private Categoria categoria;
 
 
 }

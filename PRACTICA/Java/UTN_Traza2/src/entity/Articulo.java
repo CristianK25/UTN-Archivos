@@ -16,6 +16,7 @@ public class Articulo {
     protected Double precioVenta;
     protected Long id;
 
-
+    protected Categoria categoria;
+    @Builder.Default
     protected Set<Imagen> imagenes = new HashSet<>();
 }

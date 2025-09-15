@@ -1,24 +1,24 @@
-package entity;
+package org.example.entidades;
 
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.util.HashSet;
-import java.util.Set;
 
-@SuppressWarnings("ALl")
-@Getter
-@Setter
+
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 @ToString
 @SuperBuilder
+
 public class ArticuloInsumo extends Articulo {
     private Double precioCompra;
     private Integer stockActual;
+    private Integer stockMinimo;
     private Integer stockMaximo;
-    private boolean esParaElaborar;
-    @Builder.Default
-    private Set<ArticuloManufacturadoDetalle> detalles = new HashSet<>();
+    private Boolean esParaElaborar;
+
 }

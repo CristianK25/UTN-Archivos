@@ -3,6 +3,8 @@ package entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Set;
+
 @SuppressWarnings("ALL")
 @Getter
 @Setter
@@ -11,6 +13,6 @@ import lombok.experimental.SuperBuilder;
 @ToString
 @SuperBuilder
 public class Categoria {
-    private int id;
+    private Long id;
     private String denominacion;
 }

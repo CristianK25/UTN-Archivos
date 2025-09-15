@@ -1,0 +1,36 @@
+Se necesita :
+1-	Crear las clases que intervienen en el mismo, tener en cuenta el principio de encapsulación de objetos.
+2-	Crear las relaciones que se representan, atento a su cardinalidad y dirección.
+3-	Utilizar como colección de multiplicidad un HASHSET en su implementación.
+4-	 Establecer como lógica en el método main la siguiente secuencia:
+-	Crear las categorías Pizzas, Sandwich, Lomos, Insumos
+-	Crear como unidad de medida Kilogramos, Litros y gramos.
+-	 Crear los siguientes Artículos Insumos: sal, aceite, carne y harina. Tener en cuenta en colocar como true el atributo esparaElaborar.
+Suponiendo que tenemos 3 variedades de Pizzas y 3 de Lomos.
+-	Crear imagen1 para HawainaPizza1
+-	Crear imagen2 para HawainaPizza2
+-	Crear imagen3 para HawainaPizza3
+-	Crear imagen4 para LomoCompletoLomo1
+-	Crear imagen5 para  LomoCompletoLomo2
+-	Crear imagen6 para LomoCompletoLomo3
+Ahora hay que pensar en crear el detalle de Los Artpiculos Manufacturados, tomaremos como ejemplo la asignación de sólo un insumo por detalle.
+-	Crear  el objeto detallePizzaHawaina1, con cantidad 1 e insumo la sal.
+-	Crear  el objeto detallePizzaHawaina2, con cantidad 2 e insumo la harina.
+-	Crear  el objeto detallePizzaHawaina3, con cantidad 1 e insumo el aceite.
+-	Crear  el objeto detalleLomoCompleto1, con cantidad 1 e insumo la sal.
+-	Crear  el objeto detalleLomoCompleto2, con cantidad 1 e insumo la aceite.
+-	Crear  el objeto detalleLomoCompleto3, con cantidad 1 e insumo la carne.
+Ahora a crear los productos manufacturados relacionándolos a su imagen y su correspondiente línea de detalle. Solamente crearemos Pizza Hawaina y Lomo Competo
+
+-	Crear el Articulo Manufacturado Pizza Hawaina e incorporarle sus atributos, las tres primera imágenes y los tres primeros detalle de artículos manufacturados.
+-	Al Lomo completo las imágenes correspondiente y sus líneas de detalle.
+
+5-	El desarrollo del programa a realizar debe permitir obtener los siguientes resultados durante su ejecución.
+
+a.	Mostrar todas las catgorías.
+b.	Mostrar todos los Artículos que son insumos
+c.	Mostrar todos los Artículos que son Manufacturados
+d.	Buscar un  Artículo Manufacturado por Id.
+e.	Actualizar un  Artículo Manufacturado por Id.
+f.	Eliminar un Art´culo Manufacturado por Id
+

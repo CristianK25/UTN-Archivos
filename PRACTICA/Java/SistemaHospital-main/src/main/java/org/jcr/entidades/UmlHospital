@@ -1,0 +1,279 @@
+@startuml Sistema_Gestion_Hospitalaria
+
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+' ===== ENUMERACIONES =====
+enum TipoSangre {
+    A_POSITIVO("A+")
+    A_NEGATIVO("A-")
+    B_POSITIVO("B+")
+    B_NEGATIVO("B-")
+    AB_POSITIVO("AB+")
+    AB_NEGATIVO("AB-")
+    O_POSITIVO("O+")
+    O_NEGATIVO("O-")
+    --
+    - descripcion: String
+    + getDescripcion(): String
+}
+
+enum EspecialidadMedica {
+    CARDIOLOGIA("Cardiología")
+    NEUROLOGIA("Neurología")
+    PEDIATRIA("Pediatría")
+    TRAUMATOLOGIA("Traumatología")
+    GINECOLOGIA("Ginecología")
+    UROLOGIA("Urología")
+    OFTALMOLOGIA("Oftalmología")
+    DERMATOLOGIA("Dermatología")
+    PSIQUIATRIA("Psiquiatría")
+    MEDICINA_GENERAL("Medicina General")
+    CIRUGIA_GENERAL("Cirugía General")
+    ANESTESIOLOGIA("Anestesiología")
+    --
+    - descripcion: String
+    + getDescripcion(): String
+}
+
+enum EstadoCita {
+    PROGRAMADA("Programada")
+    EN_CURSO("En Curso")
+    COMPLETADA("Completada")
+    CANCELADA("Cancelada")
+    NO_ASISTIO("No Asistió")
+    --
+    - descripcion: String
+    + getDescripcion(): String
+}
+
+' ===== CLASES PRINCIPALES =====
+
+class Hospital {
+    - nombre: String
+    - direccion: String
+    - telefono: String
+    - departamentos: List<Departamento>
+    - pacientes: List<Paciente>
+    --
+    + Hospital(nombre, direccion, telefono)
+    + agregarDepartamento(departamento: Departamento): void
+    + agregarPaciente(paciente: Paciente): void
+    + getDepartamentos(): List<Departamento>
+    + getPacientes(): List<Paciente>
+    + getInternalDepartamentos(): List<Departamento>
+    + getInternalPacientes(): List<Paciente>
+    - validarString(valor, mensajeError): String
+}
+
+class Departamento {
+    - nombre: String
+    - especialidad: EspecialidadMedica
+    - hospital: Hospital
+    - medicos: List<Medico>
+    - salas: List<Sala>
+    --
+    + Departamento(nombre, especialidad)
+    + agregarMedico(medico: Medico): void
+    + crearSala(numero, tipo): Sala
+    + setHospital(hospital: Hospital): void
+    + getMedicos(): List<Medico>
+    + getSalas(): List<Sala>
+    - validarString(valor, mensajeError): String
+}
+
+abstract class Persona {
+    # nombre: String
+    # apellido: String
+    # dni: String
+    # fechaNacimiento: LocalDate
+    # tipoSangre: TipoSangre
+    --
+    + Persona(nombre, apellido, dni, fechaNacimiento, tipoSangre)
+    + getNombre(): String
+    + getApellido(): String
+    + getDni(): String
+    + getFechaNacimiento(): LocalDate
+    + getTipoSangre(): TipoSangre
+    + getNombreCompleto(): String
+    + getEdad(): int
+    - validarString(valor, mensajeError): String
+    - validarDni(dni): String
+}
+
+class Paciente {
+    - historiaClinica: HistoriaClinica
+    - telefono: String
+    - direccion: String
+    - hospital: Hospital
+    - citas: List<Cita>
+    --
+    + Paciente(nombre, apellido, dni, fechaNacimiento, tipoSangre, telefono, direccion)
+    + getHistoriaClinica(): HistoriaClinica
+    + getTelefono(): String
+    + getDireccion(): String
+    + setHospital(hospital: Hospital): void
+    + addCita(cita: Cita): void
+    + getCitas(): List<Cita>
+    - validarString(valor, mensajeError): String
+}
+
+class Medico {
+    - matricula: Matricula
+    - especialidad: EspecialidadMedica
+    - departamento: Departamento
+    - citas: List<Cita>
+    --
+    + Medico(nombre, apellido, dni, fechaNacimiento, tipoSangre, numeroMatricula, especialidad)
+    + getMatricula(): Matricula
+    + getEspecialidad(): EspecialidadMedica
+    + setDepartamento(departamento: Departamento): void
+    + addCita(cita: Cita): void
+    + getCitas(): List<Cita>
+}
+
+class Matricula {
+    - numero: String
+    --
+    + Matricula(numero: String)
+    + getNumero(): String
+    - validarMatricula(numero): String
+}
+
+class HistoriaClinica {
+    - numeroHistoria: String
+    - paciente: Paciente
+    - fechaCreacion: LocalDateTime
+    - diagnosticos: List<String>
+    - tratamientos: List<String>
+    - alergias: List<String>
+    --
+    + HistoriaClinica(paciente: Paciente)
+    + agregarDiagnostico(diagnostico: String): void
+    + agregarTratamiento(tratamiento: String): void
+    + agregarAlergia(alergia: String): void
+    + getDiagnosticos(): List<String>
+    + getTratamientos(): List<String>
+    + getAlergias(): List<String>
+    - generarNumeroHistoria(): String
+}
+
+class Sala {
+    - numero: String
+    - tipo: String
+    - departamento: Departamento
+    - citas: List<Cita>
+    --
+    + Sala(numero, tipo, departamento)
+    + getNumero(): String
+    + getTipo(): String
+    + getDepartamento(): Departamento
+    + addCita(cita: Cita): void
+    + getCitas(): List<Cita>
+    - validarString(valor, mensajeError): String
+}
+
+class Cita {
+    - paciente: Paciente
+    - medico: Medico
+    - sala: Sala
+    - fechaHora: LocalDateTime
+    - costo: BigDecimal
+    - estado: EstadoCita
+    - observaciones: String
+    --
+    + Cita(paciente, medico, sala, fechaHora, costo)
+    + getPaciente(): Paciente
+    + getMedico(): Medico
+    + getSala(): Sala
+    + getFechaHora(): LocalDateTime
+    + getCosto(): BigDecimal
+    + getEstado(): EstadoCita
+    + setEstado(estado: EstadoCita): void
+    + getObservaciones(): String
+    + setObservaciones(observaciones: String): void
+    + toCsvString(): String
+    + {static} fromCsvString(csvString, pacientes, medicos, salas): Cita
+}
+
+' ===== EXCEPCIONES =====
+class CitaException {
+    + CitaException(message: String)
+    + CitaException(message: String, cause: Throwable)
+}
+
+' ===== INTERFACES Y SERVICIOS =====
+interface CitaService {
+    + programarCita(paciente, medico, sala, fechaHora, costo): Cita
+    + getCitasPorPaciente(paciente: Paciente): List<Cita>
+    + getCitasPorMedico(medico: Medico): List<Cita>
+    + getCitasPorSala(sala: Sala): List<Cita>
+    + guardarCitas(filename: String): void
+    + cargarCitas(filename, pacientes, medicos, salas): void
+}
+
+class CitaManager {
+    - citas: List<Cita>
+    - citasPorPaciente: Map<Paciente, List<Cita>>
+    - citasPorMedico: Map<Medico, List<Cita>>
+    - citasPorSala: Map<Sala, List<Cita>>
+    --
+    + programarCita(paciente, medico, sala, fechaHora, costo): Cita
+    + getCitasPorPaciente(paciente: Paciente): List<Cita>
+    + getCitasPorMedico(medico: Medico): List<Cita>
+    + getCitasPorSala(sala: Sala): List<Cita>
+    + guardarCitas(filename: String): void
+    + cargarCitas(filename, pacientes, medicos, salas): void
+    - validarCita(fechaHora, costo): void
+    - esMedicoDisponible(medico, fechaHora): boolean
+    - esSalaDisponible(sala, fechaHora): boolean
+    - actualizarIndicePaciente(paciente, cita): void
+    - actualizarIndiceMedico(medico, cita): void
+    - actualizarIndiceSala(sala, cita): void
+}
+
+' ===== RELACIONES DE HERENCIA =====
+Persona <|-- Paciente
+Persona <|-- Medico
+
+' ===== RELACIONES DE COMPOSICIÓN Y AGREGACIÓN =====
+Hospital ||--o{ Departamento : "contiene"
+Hospital ||--o{ Paciente : "registra"
+Departamento ||--o{ Medico : "emplea"
+Departamento ||--o{ Sala : "tiene"
+Paciente ||--|| HistoriaClinica : "posee"
+Medico ||--|| Matricula : "tiene"
+
+' ===== RELACIONES DE ASOCIACIÓN =====
+Departamento }o--|| EspecialidadMedica : "especialidad"
+Medico }o--|| EspecialidadMedica : "especialidad"
+Persona }o--|| TipoSangre : "tipo de sangre"
+
+' ===== CLASE ASOCIATIVA (MUCHOS A MUCHOS) =====
+Paciente }|..|{ Medico
+(Paciente, Medico) .. Cita : "programan"
+
+Sala }|..|{ Medico
+(Sala, Medico) .. Cita : "utilizan"
+
+Paciente }|..|{ Sala
+(Paciente, Sala) .. Cita : "reservan"
+
+' ===== RELACIONES CON ENUMS =====
+Cita }o--|| EstadoCita : "estado"
+
+' ===== RELACIONES DE IMPLEMENTACIÓN =====
+CitaService <|.. CitaManager : "implements"
+
+' ===== RELACIONES DE DEPENDENCIA =====
+CitaManager ..> CitaException : "throws"
+Cita ..> CitaException : "throws"
+
+' ===== NOTAS Y COMENTARIOS =====
+note top of Persona : Clase abstracta base\npara Paciente y Medico
+note right of Cita : Clase asociativa que representa\nla relación muchos-a-muchos\nentre Paciente, Medico y Sala
+note bottom of CitaManager : Gestiona todas las operaciones\nrelacionadas con citas médicas\ny persistencia en CSV
+note left of HistoriaClinica : Se genera automáticamente\ncuando se crea un paciente
+
+@enduml

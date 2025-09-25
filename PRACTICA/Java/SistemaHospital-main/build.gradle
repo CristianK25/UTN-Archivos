@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.jcr'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // JUnit para pruebas (opcional)
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    implementation 'org.hibernate.orm:hibernate-core:6.4.6.Final' // o compatible con tu Boot
+    runtimeOnly 'com.h2database:h2:2.2.224' // o tu driver real
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    implementation("org.projectlombok:lombok:1.18.42")
+
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    // JPA API
+
+
+
+    // Logger (opcional pero recomendable)
+    implementation 'org.slf4j:slf4j-simple:2.0.13'
+
+}
+
+test {
+    useJUnitPlatform()
+}

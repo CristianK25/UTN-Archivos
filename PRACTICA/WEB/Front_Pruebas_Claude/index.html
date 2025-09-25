@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechRGB - Tu tienda de computadoras</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <div class="logo">
+                    <i class="fas fa-microchip"></i>
+                    <span>TechRGB</span>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link active">Inicio</a>
+                <a href="productos.html" class="nav-link">Productos</a>
+                <a href="#" class="nav-link">Categorías</a>
+                <a href="#" class="nav-link">Ofertas</a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Buscar productos..." class="search-input" id="searchInput">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <button class="login-btn" id="loginBtn">
+                    <i class="fas fa-user"></i>
+                    <span>Iniciar Sesión</span>
+                </button>
+                <button class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">La mejor tecnología RGB a tu alcance</h1>
+            <p class="hero-subtitle">Descubre componentes y equipos gaming de última generación</p>
+            <button class="hero-btn">
+                <span>Explorar productos</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        <div class="hero-visual">
+            <div class="rgb-circle"></div>
+            <div class="rgb-circle-2"></div>
+            <div class="floating-icons">
+                <i class="fas fa-microchip"></i>
+                <i class="fas fa-memory"></i>
+                <i class="fas fa-hdd"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Destacados -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Productos Destacados</h2>
+            <div class="products-grid" id="featuredProducts">
+                <!-- Los productos se cargarán dinámicamente aquí -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Promociones -->
+    <section class="promotions">
+        <div class="container">
+            <h2 class="section-title">Promociones Especiales</h2>
+            <div class="promotions-carousel" id="promotionsCarousel">
+                <!-- Las promociones se cargarán dinámicamente aquí -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Login -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Iniciar Sesión</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Usuario</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Ingresar</span>
+                        <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </form>
+                <div class="form-footer">
+                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    <p>¿No tienes cuenta? <a href="#" class="register-link">Regístrate aquí</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-microchip"></i>
+                        <span>TechRGB</span>
+                    </div>
+                    <p>Tu tienda especializada en componentes gaming y tecnología RGB.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Categorías</h4>
+                    <ul>
+                        <li><a href="#">Procesadores</a></li>
+                        <li><a href="#">Tarjetas Gráficas</a></li>
+                        <li><a href="#">Memorias RAM</a></li>
+                        <li><a href="#">Almacenamiento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Garantías</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechRGB. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

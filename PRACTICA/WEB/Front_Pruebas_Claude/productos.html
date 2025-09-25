@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - TechRGB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header (igual al de index.html) -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <div class="logo">
+                    <i class="fas fa-microchip"></i>
+                    <span>TechRGB</span>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="productos.html" class="nav-link active">Productos</a>
+                <a href="#" class="nav-link">Categorías</a>
+                <a href="#" class="nav-link">Ofertas</a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Buscar productos..." class="search-input" id="searchInput">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <button class="login-btn" id="loginBtn">
+                    <i class="fas fa-user"></i>
+                    <span>Iniciar Sesión</span>
+                </button>
+                <button class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Nuestros Productos</h1>
+            <p class="page-subtitle">Encuentra los mejores componentes y equipos gaming</p>
+        </div>
+    </section>
+
+    <!-- Filtros y Productos -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-layout">
+                <!-- Sidebar de filtros -->
+                <aside class="filters-sidebar">
+                    <div class="filter-group">
+                        <h3 class="filter-title">
+                            <i class="fas fa-filter"></i>
+                            Filtros
+                        </h3>
+                        <button class="clear-filters" id="clearFilters">
+                            <i class="fas fa-times"></i>
+                            Limpiar filtros
+                        </button>
+                    </div>
+
+                    <!-- Filtro por categoría -->
+                    <div class="filter-group">
+                        <h4 class="filter-subtitle">Categorías</h4>
+                        <div class="filter-options" id="categoryFilters">
+                            <label class="filter-option">
+                                <input type="checkbox" value="" checked>
+                                <span class="checkmark"></span>
+                                Todas las categorías
+                            </label>
+                            <!-- Las categorías se cargarán dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Filtro por rango de precio -->
+                    <div class="filter-group">
+                        <h4 class="filter-subtitle">Rango de Precio</h4>
+                        <div class="price-range">
+                            <div class="price-inputs">
+                                <input type="number" id="minPrice" placeholder="Mín" class="price-input">
+                                <span class="price-separator">-</span>
+                                <input type="number" id="maxPrice" placeholder="Máx" class="price-input">
+                            </div>
+                            <button class="apply-price-filter" id="applyPriceFilter">
+                                <i class="fas fa-check"></i>
+                                Aplicar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filtro por marca -->
+                    <div class="filter-group">
+                        <h4 class="filter-subtitle">Marcas</h4>
+                        <div class="filter-options" id="brandFilters">
+                            <!-- Las marcas se cargarán dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Filtro por disponibilidad -->
+                    <div class="filter-group">
+                        <h4 class="filter-subtitle">Disponibilidad</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" value="disponible" id="inStockOnly">
+                                <span class="checkmark"></span>
+                                Solo en stock
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Contenido principal de productos -->
+                <main class="products-main">
+                    <!-- Toolbar de ordenamiento -->
+                    <div class="products-toolbar">
+                        <div class="toolbar-left">
+                            <span class="results-count" id="resultsCount">
+                                Mostrando 0 productos
+                            </span>
+                        </div>
+                        <div class="toolbar-right">
+                            <div class="sort-container">
+                                <label for="sortSelect">Ordenar por:</label>
+                                <select id="sortSelect" class="sort-select">
+                                    <option value="relevancia">Relevancia</option>
+                                    <option value="precio-asc">Precio: menor a mayor</option>
+                                    <option value="precio-desc">Precio: mayor a menor</option>
+                                    <option value="nombre-asc">Nombre: A-Z</option>
+                                    <option value="nombre-desc">Nombre: Z-A</option>
+                                    <option value="fecha-desc">Más recientes</option>
+                                </select>
+                            </div>
+                            <div class="view-toggle">
+                                <button class="view-btn active" data-view="grid">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn" data-view="list">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid de productos -->
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Los productos se cargarán dinámicamente aquí -->
+                    </div>
+
+                    <!-- Loading spinner -->
+                    <div class="loading-spinner" id="loadingSpinner">
+                        <div class="spinner"></div>
+                        <p>Cargando productos...</p>
+                    </div>
+
+                    <!-- Mensaje cuando no hay productos -->
+                    <div class="no-products" id="noProducts" style="display: none;">
+                        <i class="fas fa-search"></i>
+                        <h3>No se encontraron productos</h3>
+                        <p>Intenta ajustar los filtros o términos de búsqueda</p>
+                    </div>
+
+                    <!-- Paginación -->
+                    <div class="pagination" id="pagination">
+                        <!-- La paginación se generará dinámicamente -->
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de login (igual al de index.html) -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Iniciar Sesión</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Usuario</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Ingresar</span>
+                        <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </form>
+                <div class="form-footer">
+                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    <p>¿No tienes cuenta? <a href="#" class="register-link">Regístrate aquí</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (igual al de index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-microchip"></i>
+                        <span>TechRGB</span>
+                    </div>
+                    <p>Tu tienda especializada en componentes gaming y tecnología RGB.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Categorías</h4>
+                    <ul>
+                        <li><a href="#">Procesadores</a></li>
+                        <li><a href="#">Tarjetas Gráficas</a></li>
+                        <li><a href="#">Memorias RAM</a></li>
+                        <li><a href="#">Almacenamiento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Garantías</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechRGB. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="productos.js"></script>
+</body>
+</html>

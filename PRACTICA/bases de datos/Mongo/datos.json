@@ -1,0 +1,10 @@
+[
+  { "nombre": "Tablet Samsung", "categoria": "Tecnología", "precio": 450 },
+  { "nombre": "Monitor LG 24\"", "categoria": "Tecnología", "precio": 220 },
+  { "nombre": "Silla Gamer", "categoria": "Muebles", "precio": 300 },
+  { "nombre": "Escritorio de Oficina", "categoria": "Muebles", "precio": 400 },
+  { "nombre": "Microondas Whirlpool", "categoria": "Electrodomésticos", "precio": 180 },
+  { "nombre": "Auriculares Sony", "categoria": "Tecnología", "precio": 120 },
+  { "nombre": "Libro: JavaScript Avanzado", "categoria": "Libros", "precio": 50 },
+  { "nombre": "Cafetera Nespresso", "categoria": "Electrodomésticos", "precio": 250 }
+]

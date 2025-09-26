@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Ecommerce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header sticky con navegación -->
+    <header class="sticky-header">
+        <div class="header-content">
+            <h1>Panel de Administración</h1>
+            <nav class="nav-buttons">
+                <a href="#agregar-producto" class="nav-btn">Agregar Producto</a>
+                <a href="#modificar-producto" class="nav-btn">Gestionar Productos</a>
+                <a href="#agregar-promocion" class="nav-btn">Agregar Promoción</a>
+                <a href="#modificar-promocion" class="nav-btn">Gestionar Promociones</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Sección 1: Agregar Producto -->
+        <section id="agregar-producto" class="admin-section">
+            <details open>
+                <summary>Agregar Producto</summary>
+                <div class="section-content">
+                    <form class="admin-form">
+                        <!-- Aquí iría la lógica POST para crear nuevo producto -->
+                        <div class="form-group">
+                            <label for="nombre-producto">Nombre del Producto:</label>
+                            <input type="text" id="nombre-producto" name="nombre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="descripcion-producto">Descripción:</label>
+                            <textarea id="descripcion-producto" name="descripcion" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="marca-producto">Marca:</label>
+                            <input type="text" id="marca-producto" name="marca" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipo-producto">Tipo de Producto:</label>
+                            <select id="tipo-producto" name="tipo" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="perfume">Perfume</option>
+                                <option value="vape">Vape</option>
+                                <option value="cigarrillo-electronico">Cigarrillo Electrónico</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tamaño-producto">Tamaño:</label>
+                            <input type="text" id="tamaño-producto" name="tamaño" placeholder="ej: 100ml, 30ml, etc.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="precio-producto">Precio ($):</label>
+                            <input type="number" id="precio-producto" name="precio" step="0.01" min="0" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="stock-producto">Stock:</label>
+                            <input type="number" id="stock-producto" name="stock" min="0" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="imagen-producto">URL de Imagen:</label>
+                            <input type="url" id="imagen-producto" name="imagen" placeholder="https://ejemplo.com/imagen.jpg">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fragancia-producto">Fragancia:</label>
+                            <input type="text" id="fragancia-producto" name="fragancia" placeholder="ej: Floral, Cítrico, Amaderado">
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Agregar Producto</button>
+                    </form>
+                </div>
+            </details>
+        </section>
+
+        <!-- Sección 2: Modificar/Eliminar Producto -->
+        <section id="modificar-producto" class="admin-section">
+            <details>
+                <summary>Gestionar Productos Existentes</summary>
+                <div class="section-content">
+                    <!-- Aquí iría la lógica para listar productos desde la base de datos -->
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Marca</th>
+                                    <th>Tipo</th>
+                                    <th>Precio</th>
+                                    <th>Stock</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Datos de ejemplo - En producción vendrían del backend -->
+                                <tr>
+                                    <td>Perfume Chanel No. 5</td>
+                                    <td>Chanel</td>
+                                    <td>Perfume</td>
+                                    <td>$125.00</td>
+                                    <td>15</td>
+                                    <td>
+                                        <button class="btn-secondary">Modificar</button>
+                                        <button class="btn-danger">Eliminar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Vape Juul Starter Kit</td>
+                                    <td>Juul</td>
+                                    <td>Vape</td>
+                                    <td>$35.00</td>
+                                    <td>8</td>
+                                    <td>
+                                        <button class="btn-secondary">Modificar</button>
+                                        <button class="btn-danger">Eliminar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>IQOS 3 DUO</td>
+                                    <td>Philip Morris</td>
+                                    <td>Cigarrillo Electrónico</td>
+                                    <td>$89.99</td>
+                                    <td>3</td>
+                                    <td>
+                                        <button class="btn-secondary">Modificar</button>
+                                        <button class="btn-danger">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
+        </section>
+
+        <!-- Sección 3: Agregar Promoción -->
+        <section id="agregar-promocion" class="admin-section">
+            <details>
+                <summary>Agregar Promoción</summary>
+                <div class="section-content">
+                    <form class="admin-form">
+                        <!-- Aquí iría la lógica POST para crear nueva promoción -->
+                        <div class="form-group">
+                            <label for="producto-promocion">Producto Asociado:</label>
+                            <select id="producto-promocion" name="producto_id" required>
+                                <option value="">Seleccionar producto</option>
+                                <!-- En producción, estos options vendrían de la base de datos -->
+                                <option value="1">Perfume Chanel No. 5</option>
+                                <option value="2">Vape Juul Starter Kit</option>
+                                <option value="3">IQOS 3 DUO</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="descripcion-promocion">Descripción de la Promoción:</label>
+                            <textarea id="descripcion-promocion" name="descripcion" rows="3" required placeholder="ej: Oferta especial del mes"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="descuento">Descuento (%):</label>
+                            <input type="number" id="descuento" name="descuento" min="1" max="100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fecha-inicio">Fecha de Inicio:</label>
+                            <input type="date" id="fecha-inicio" name="fecha_inicio" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fecha-fin">Fecha de Fin:</label>
+                            <input type="date" id="fecha-fin" name="fecha_fin" required>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="activo-promocion" name="activo" checked>
+                                <span class="checkmark"></span>
+                                Promoción Activa
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Agregar Promoción</button>
+                    </form>
+                </div>
+            </details>
+        </section>
+
+        <!-- Sección 4: Modificar/Eliminar Promoción -->
+        <section id="modificar-promocion" class="admin-section">
+            <details>
+                <summary>Gestionar Promociones Existentes</summary>
+                <div class="section-content">
+                    <!-- Aquí iría la lógica para listar promociones desde la base de datos -->
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Descripción</th>
+                                    <th>Descuento</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Fecha Fin</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Datos de ejemplo - En producción vendrían del backend -->
+                                <tr>
+                                    <td>Perfume Chanel No. 5</td>
+                                    <td>Oferta especial de temporada</td>
+                                    <td>20%</td>
+                                    <td>2025-09-01</td>
+                                    <td>2025-09-30</td>
+                                    <td><span class="status active">Activa</span></td>
+                                    <td>
+                                        <button class="btn-secondary">Modificar</button>
+                                        <button class="btn-danger">Eliminar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Vape Juul Starter Kit</td>
+                                    <td>Descuento para nuevos usuarios</td>
+                                    <td>15%</td>
+                                    <td>2025-08-15</td>
+                                    <td>2025-10-15</td>
+                                    <td><span class="status active">Activa</span></td>
+                                    <td>
+                                        <button class="btn-secondary">Modificar</button>
+                                        <button class="btn-danger">Eliminar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>IQOS 3 DUO</td>
+                                    <td>Liquidación de stock</td>
+                                    <td>30%</td>
+                                    <td>2025-07-01</td>
+                                    <td>2025-08-31</td>
+                                    <td><span class="status inactive">Inactiva</span></td>
+                                    <td>
+                                        <button class="btn-secondary">Modificar</button>
+                                        <button class="btn-danger">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
+        </section>
+    </main>
+</body>
+</html>

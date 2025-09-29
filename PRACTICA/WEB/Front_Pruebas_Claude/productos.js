@@ -29,7 +29,7 @@ let currentFilters = {
 let currentSort = 'relevancia';
 let currentView = 'grid';
 let currentUser = null;
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // ============================================
 // FUNCIONES DE API - ENDPOINTS DEL BACKEND
@@ -134,7 +134,7 @@ async function getAllProducts(page = 1, limit = 12, filters = {}, sort = 'releva
             {
                 id: 8, nombre: "SSD WD 500GB", precio: 55000,
                 imagen: "https://via.placeholder.com/300x200/67E8F9/000000?text=SSD+500GB",
-                descripción: "SSD confiable para uso general",
+                descripcion: "SSD confiable para uso general",
                 categoria: "Storage", marca: "Western Digital", stock: 0, disponible: false
             }
         ];
@@ -210,6 +210,43 @@ async function getAllProducts(page = 1, limit = 12, filters = {}, sort = 'releva
     }
 }
 
+// Obtener producto por ID
+async function getProductById(productId) {
+    try {
+        /* 
+        ENDPOINT: GET /api/productos/{id}
+        Descripción: Obtiene un producto específico por su ID
+        Respuesta esperada: Objeto producto
+        */
+        
+        // REEMPLAZAR CON TU ENDPOINT REAL:
+        // const response = await fetch(`${API_BASE_URL}/productos/${productId}`, {
+        //     method: 'GET',
+        //     headers: API_HEADERS
+        // });
+        // const product = await response.json();
+        // return product;
+        
+        // DATOS DE PRUEBA - buscar en mockProducts
+        const mockProducts = [
+            { id: 1, nombre: "RTX 4080 Gaming RGB", precio: 850000, imagen: "https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=RTX+4080", descripcion: "Tarjeta gráfica de última generación con RGB", categoria: "GPU", marca: "NVIDIA", stock: 5, disponible: true },
+            { id: 2, nombre: "Ryzen 9 7900X", precio: 420000, imagen: "https://via.placeholder.com/300x200/06B6D4/FFFFFF?text=Ryzen+9", descripcion: "Procesador gaming de alto rendimiento", categoria: "CPU", marca: "AMD", stock: 8, disponible: true },
+            { id: 3, nombre: "RAM Corsair 32GB RGB", precio: 180000, imagen: "https://via.placeholder.com/300x200/A78BFA/FFFFFF?text=RAM+32GB", descripcion: "Memoria RAM DDR5 con iluminación RGB", categoria: "RAM", marca: "Corsair", stock: 12, disponible: true },
+            { id: 4, nombre: "SSD Samsung 1TB NVMe", precio: 95000, imagen: "https://via.placeholder.com/300x200/67E8F9/000000?text=SSD+1TB", descripcion: "Almacenamiento SSD ultra rápido", categoria: "Storage", marca: "Samsung", stock: 15, disponible: true },
+            { id: 5, nombre: "RTX 4070 Ti", precio: 650000, imagen: "https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=RTX+4070Ti", descripcion: "Excelente relación precio-rendimiento", categoria: "GPU", marca: "NVIDIA", stock: 3, disponible: true },
+            { id: 6, nombre: "Intel i7-13700K", precio: 380000, imagen: "https://via.placeholder.com/300x200/06B6D4/FFFFFF?text=i7+13700K", descripcion: "Procesador Intel de 13va generación", categoria: "CPU", marca: "Intel", stock: 6, disponible: true },
+            { id: 7, nombre: "RAM G.Skill 16GB", precio: 95000, imagen: "https://via.placeholder.com/300x200/A78BFA/FFFFFF?text=RAM+16GB", descripcion: "Memoria RAM DDR4 de alto rendimiento", categoria: "RAM", marca: "G.Skill", stock: 20, disponible: true },
+            { id: 8, nombre: "SSD WD 500GB", precio: 55000, imagen: "https://via.placeholder.com/300x200/67E8F9/000000?text=SSD+500GB", descripcion: "SSD confiable para uso general", categoria: "Storage", marca: "Western Digital", stock: 0, disponible: false }
+        ];
+        
+        return mockProducts.find(p => p.id === parseInt(productId));
+        
+    } catch (error) {
+        console.error('Error al obtener producto:', error);
+        return null;
+    }
+}
+
 // Obtener todas las categorías disponibles
 async function getCategories() {
     try {
@@ -265,6 +302,236 @@ async function getBrands() {
 }
 
 /**
+ * CARRITO - Funciones para gestión del carrito
+ */
+
+// Agregar producto al carrito
+async function addToCart(productId, quantity = 1) {
+    try {
+        /* 
+        ENDPOINT: POST /api/carrito/agregar
+        Descripción: Agrega un producto al carrito del usuario
+        Headers: Authorization: Bearer {token}
+        Body: {
+            productoId: number,
+            cantidad: number
+        }
+        Respuesta esperada: {
+            message: string,
+            carrito: {
+                items: Array,
+                total: number
+            }
+        }
+        */
+        
+        // REEMPLAZAR CON TU ENDPOINT REAL:
+        // const token = localStorage.getItem('authToken');
+        // const response = await fetch(`${API_BASE_URL}/carrito/agregar`, {
+        //     method: 'POST',
+        //     headers: {
+        //         ...API_HEADERS,
+        //         'Authorization': `Bearer ${token}`
+        //     },
+        //     body: JSON.stringify({
+        //         productoId: productId,
+        //         cantidad: quantity
+        //     })
+        // });
+        // const result = await response.json();
+        
+        // Obtener información del producto
+        const product = await getProductById(productId);
+        if (!product) {
+            throw new Error('Producto no encontrado');
+        }
+        
+        if (!product.disponible || product.stock <= 0) {
+            throw new Error('Producto no disponible');
+        }
+        
+        // Verificar si ya existe en el carrito
+        const existingItemIndex = cart.findIndex(item => item.product.id === productId);
+        
+        if (existingItemIndex !== -1) {
+            // Si existe, aumentar cantidad
+            const newQuantity = cart[existingItemIndex].quantity + quantity;
+            if (newQuantity > product.stock) {
+                throw new Error(`Solo hay ${product.stock} unidades disponibles`);
+            }
+            cart[existingItemIndex].quantity = newQuantity;
+        } else {
+            // Si no existe, agregarlo
+            if (quantity > product.stock) {
+                throw new Error(`Solo hay ${product.stock} unidades disponibles`);
+            }
+            cart.push({
+                product: product,
+                quantity: quantity
+            });
+        }
+        
+        // Guardar en localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        updateCartUI();
+        showNotification('Producto agregado al carrito', 'success');
+        
+    } catch (error) {
+        console.error('Error al agregar al carrito:', error);
+        showNotification(error.message, 'error');
+    }
+}
+
+// Remover producto del carrito
+function removeFromCart(productId) {
+    try {
+        /* 
+        ENDPOINT: DELETE /api/carrito/remover/{productId}
+        Descripción: Remueve un producto del carrito
+        Headers: Authorization: Bearer {token}
+        */
+        
+        cart = cart.filter(item => item.product.id !== productId);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        updateCartUI();
+        renderCartItems();
+        showNotification('Producto eliminado del carrito', 'info');
+        
+    } catch (error) {
+        console.error('Error al remover del carrito:', error);
+        showNotification('Error al remover producto', 'error');
+    }
+}
+
+// Actualizar cantidad de producto en el carrito
+function updateCartQuantity(productId, newQuantity) {
+    try {
+        /* 
+        ENDPOINT: PUT /api/carrito/actualizar
+        Descripción: Actualiza la cantidad de un producto en el carrito
+        Headers: Authorization: Bearer {token}
+        Body: {
+            productoId: number,
+            cantidad: number
+        }
+        */
+        
+        const itemIndex = cart.findIndex(item => item.product.id === productId);
+        
+        if (itemIndex !== -1) {
+            if (newQuantity <= 0) {
+                removeFromCart(productId);
+                return;
+            }
+            
+            if (newQuantity > cart[itemIndex].product.stock) {
+                showNotification(`Solo hay ${cart[itemIndex].product.stock} unidades disponibles`, 'warning');
+                return;
+            }
+            
+            cart[itemIndex].quantity = newQuantity;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            updateCartUI();
+            renderCartItems();
+        }
+        
+    } catch (error) {
+        console.error('Error al actualizar cantidad:', error);
+        showNotification('Error al actualizar cantidad', 'error');
+    }
+}
+
+// Vaciar carrito
+function clearCart() {
+    try {
+        /* 
+        ENDPOINT: DELETE /api/carrito/vaciar
+        Descripción: Vacía completamente el carrito del usuario
+        Headers: Authorization: Bearer {token}
+        */
+        
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        updateCartUI();
+        renderCartItems();
+        showNotification('Carrito vaciado', 'info');
+        
+    } catch (error) {
+        console.error('Error al vaciar carrito:', error);
+        showNotification('Error al vaciar carrito', 'error');
+    }
+}
+
+// Calcular total del carrito
+function calculateCartTotal() {
+    return cart.reduce((total, item) => total + (item.product.precio * item.quantity), 0);
+}
+
+/**
+ * CHECKOUT - Funciones para proceso de compra
+ */
+
+// Procesar checkout
+async function processCheckout(checkoutData) {
+    try {
+        /* 
+        ENDPOINT: POST /api/checkout
+        Descripción: Procesa la compra del carrito
+        Headers: Authorization: Bearer {token}
+        Body: {
+            items: Array,
+            metodoPago: string,
+            direccionEnvio: object,
+            total: number
+        }
+        Respuesta esperada: {
+            orderId: number,
+            estado: string,
+            total: number,
+            fechaCreacion: string
+        }
+        */
+        
+        // REEMPLAZAR CON TU ENDPOINT REAL:
+        // const token = localStorage.getItem('authToken');
+        // const response = await fetch(`${API_BASE_URL}/checkout`, {
+        //     method: 'POST',
+        //     headers: {
+        //         ...API_HEADERS,
+        //         'Authorization': `Bearer ${token}`
+        //     },
+        //     body: JSON.stringify(checkoutData)
+        // });
+        // const result = await response.json();
+        // return result;
+        
+        // SIMULACIÓN DE CHECKOUT
+        const orderId = Math.floor(Math.random() * 1000000);
+        
+        // Simular delay de procesamiento
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Vaciar carrito después de compra exitosa
+        clearCart();
+        
+        return {
+            orderId: orderId,
+            estado: 'CONFIRMADO',
+            total: checkoutData.total,
+            fechaCreacion: new Date().toISOString()
+        };
+        
+    } catch (error) {
+        console.error('Error en checkout:', error);
+        throw error;
+    }
+}
+
+/**
  * AUTENTICACIÓN - Reutilizar funciones de script.js
  */
 
@@ -294,35 +561,6 @@ async function loginUser(credentials) {
     }
 }
 
-/**
- * CARRITO - Reutilizar funciones de script.js
- */
-
-// Agregar producto al carrito (igual que en script.js)
-async function addToCart(productId, quantity = 1) {
-    try {
-        // REEMPLAZAR CON TU ENDPOINT REAL (igual que en script.js)
-        
-        // SIMULACIÓN
-        const existingItem = cart.find(item => item.productId === productId);
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            cart.push({
-                productId: productId,
-                quantity: quantity
-            });
-        }
-        
-        updateCartUI();
-        showNotification('Producto agregado al carrito', 'success');
-        
-    } catch (error) {
-        console.error('Error al agregar al carrito:', error);
-        showNotification('Error al agregar al carrito', 'error');
-    }
-}
-
 // ============================================
 // EVENTOS Y FUNCIONALIDAD DE LA UI
 // ============================================
@@ -332,6 +570,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeProductsPage();
     setupEventListeners();
     loadInitialData();
+    updateCartUI(); // Actualizar contador del carrito al cargar
 });
 
 // Inicializar la página de productos
@@ -367,6 +606,29 @@ function setupEventListeners() {
     
     // Paginación
     setupPagination();
+    
+    // Carrito
+    setupCartFunctionality();
+}
+
+// Configurar funcionalidad del carrito
+function setupCartFunctionality() {
+    const cartBtn = document.querySelector('.cart-btn');
+    if (cartBtn) {
+        cartBtn.addEventListener('click', toggleCartSidebar);
+    }
+    
+    // Cerrar carrito al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartBtn = document.querySelector('.cart-btn');
+        
+        if (cartSidebar && cartSidebar.classList.contains('active')) {
+            if (!cartSidebar.contains(e.target) && !cartBtn.contains(e.target)) {
+                closeCartSidebar();
+            }
+        }
+    });
 }
 
 // Configurar modal de login
@@ -467,98 +729,6 @@ function setupPagination() {
 // MANEJADORES DE EVENTOS
 // ============================================
 
-// Manejar login (igual que en script.js)
-async function handleLogin(e) {
-    e.preventDefault();
-    
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    
-    if (!username || !password) {
-        showNotification('Por favor completa todos los campos', 'error');
-        return;
-    }
-    
-    try {
-        const submitBtn = e.target.querySelector('.submit-btn');
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Ingresando...';
-        
-        await loginUser({ username, password });
-        
-        document.getElementById('loginModal').classList.remove('active');
-        showNotification(`¡Bienvenido, ${username}!`, 'success');
-        
-    } catch (error) {
-        showNotification('Error al iniciar sesión. Verifica tus credenciales.', 'error');
-    } finally {
-        const submitBtn = e.target.querySelector('.submit-btn');
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span>Ingresar</span><i class="fas fa-sign-in-alt"></i>';
-    }
-}
-
-// Manejar búsqueda
-async function handleSearch() {
-    const searchInput = document.getElementById('searchInput');
-    const query = searchInput.value.trim();
-    
-    currentFilters.search = query;
-    currentPage = 1;
-    
-    await loadProducts();
-}
-
-// Manejar filtro por categoría
-function handleCategoryFilter(e) {
-    if (e.target.type === 'checkbox' && e.target.checked) {
-        // Desmarcar otros checkboxes de categoría
-        const categoryCheckboxes = document.querySelectorAll('#categoryFilters input[type="checkbox"]');
-        categoryCheckboxes.forEach(cb => {
-            if (cb !== e.target) cb.checked = false;
-        });
-        
-        currentFilters.category = e.target.value;
-        currentPage = 1;
-        loadProducts();
-    } else if (e.target.type === 'checkbox' && !e.target.checked) {
-        currentFilters.category = '';
-        currentPage = 1;
-        loadProducts();
-    }
-}
-
-// Manejar filtro por marca
-function handleBrandFilter(e) {
-    if (e.target.type === 'checkbox' && e.target.checked) {
-        // Desmarcar otros checkboxes de marca
-        const brandCheckboxes = document.querySelectorAll('#brandFilters input[type="checkbox"]');
-        brandCheckboxes.forEach(cb => {
-            if (cb !== e.target) cb.checked = false;
-        });
-        
-        currentFilters.brand = e.target.value;
-        currentPage = 1;
-        loadProducts();
-    } else if (e.target.type === 'checkbox' && !e.target.checked) {
-        currentFilters.brand = '';
-        currentPage = 1;
-        loadProducts();
-    }
-}
-
-// Manejar filtro de precio
-function handlePriceFilter() {
-    const minPrice = document.getElementById('minPrice').value;
-    const maxPrice = document.getElementById('maxPrice').value;
-    
-    currentFilters.minPrice = minPrice ? parseFloat(minPrice) : null;
-    currentFilters.maxPrice = maxPrice ? parseFloat(maxPrice) : null;
-    currentPage = 1;
-    
-    loadProducts();
-}
-
 // Manejar filtro de stock
 function handleStockFilter(e) {
     currentFilters.inStock = e.target.checked;
@@ -623,6 +793,215 @@ function handleViewChange(e) {
     } else {
         productsGrid.classList.remove('list-view');
     }
+}
+
+// ============================================
+// FUNCIONES DEL CARRITO
+// ============================================
+
+// Mostrar/ocultar sidebar del carrito
+function toggleCartSidebar() {
+    const cartSidebar = document.getElementById('cartSidebar');
+    if (cartSidebar) {
+        cartSidebar.classList.toggle('active');
+        if (cartSidebar.classList.contains('active')) {
+            renderCartItems();
+        }
+    }
+}
+
+// Cerrar sidebar del carrito
+function closeCartSidebar() {
+    const cartSidebar = document.getElementById('cartSidebar');
+    if (cartSidebar) {
+        cartSidebar.classList.remove('active');
+    }
+}
+
+// Renderizar items del carrito
+function renderCartItems() {
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const emptyCartMessage = document.getElementById('emptyCartMessage');
+    const cartActions = document.getElementById('cartActions');
+    
+    if (!cartItems) return;
+    
+    if (cart.length === 0) {
+        cartItems.innerHTML = '';
+        if (emptyCartMessage) emptyCartMessage.style.display = 'block';
+        if (cartActions) cartActions.style.display = 'none';
+        if (cartTotal) cartTotal.textContent = '$0';
+        return;
+    }
+    
+    if (emptyCartMessage) emptyCartMessage.style.display = 'none';
+    if (cartActions) cartActions.style.display = 'flex';
+    
+    cartItems.innerHTML = '';
+    
+    cart.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+            <div class="cart-item-image">
+                <img src="${item.product.imagen}" alt="${item.product.nombre}">
+            </div>
+            <div class="cart-item-info">
+                <h4 class="cart-item-name">${item.product.nombre}</h4>
+                <p class="cart-item-price">${item.product.precio.toLocaleString()}</p>
+                <div class="cart-item-quantity">
+                    <button class="quantity-btn" onclick="updateCartQuantity(${item.product.id}, ${item.quantity - 1})">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button class="quantity-btn" onclick="updateCartQuantity(${item.product.id}, ${item.quantity + 1})">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <p class="cart-item-subtotal">Subtotal: ${(item.product.precio * item.quantity).toLocaleString()}</p>
+            </div>
+            <button class="remove-item-btn" onclick="removeFromCart(${item.product.id})">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+        cartItems.appendChild(cartItem);
+    });
+    
+    // Actualizar total
+    const total = calculateCartTotal();
+    if (cartTotal) {
+        cartTotal.textContent = `${total.toLocaleString()}`;
+    }
+}
+
+// Abrir modal de checkout
+function openCheckoutModal() {
+    if (cart.length === 0) {
+        showNotification('El carrito está vacío', 'warning');
+        return;
+    }
+    
+    const checkoutModal = document.getElementById('checkoutModal');
+    if (checkoutModal) {
+        checkoutModal.classList.add('active');
+        renderCheckoutSummary();
+    }
+}
+
+// Cerrar modal de checkout
+function closeCheckoutModal() {
+    const checkoutModal = document.getElementById('checkoutModal');
+    if (checkoutModal) {
+        checkoutModal.classList.remove('active');
+    }
+}
+
+// Renderizar resumen de checkout
+function renderCheckoutSummary() {
+    const checkoutItems = document.getElementById('checkoutItems');
+    const checkoutTotal = document.getElementById('checkoutTotal');
+    
+    if (checkoutItems) {
+        checkoutItems.innerHTML = '';
+        
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'checkout-item';
+            itemElement.innerHTML = `
+                <div class="checkout-item-info">
+                    <span class="item-name">${item.product.nombre}</span>
+                    <span class="item-quantity">x${item.quantity}</span>
+                </div>
+                <span class="item-total">${(item.product.precio * item.quantity).toLocaleString()}</span>
+            `;
+            checkoutItems.appendChild(itemElement);
+        });
+    }
+    
+    if (checkoutTotal) {
+        const total = calculateCartTotal();
+        checkoutTotal.textContent = `${total.toLocaleString()}`;
+    }
+}
+
+// Procesar compra
+async function handleCheckout(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    const checkoutData = {
+        items: cart.map(item => ({
+            productoId: item.product.id,
+            cantidad: item.quantity,
+            precio: item.product.precio
+        })),
+        metodoPago: formData.get('paymentMethod'),
+        direccionEnvio: {
+            nombre: formData.get('fullName'),
+            direccion: formData.get('address'),
+            ciudad: formData.get('city'),
+            codigoPostal: formData.get('zipCode'),
+            telefono: formData.get('phone')
+        },
+        total: calculateCartTotal()
+    };
+    
+    try {
+        const submitBtn = form.querySelector('.checkout-submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+        
+        const result = await processCheckout(checkoutData);
+        
+        closeCheckoutModal();
+        closeCartSidebar();
+        
+        showNotification(`¡Compra exitosa! Número de orden: ${result.orderId}`, 'success');
+        
+        // Mostrar modal de confirmación
+        showOrderConfirmationModal(result);
+        
+    } catch (error) {
+        showNotification('Error al procesar la compra. Intenta nuevamente.', 'error');
+    } finally {
+        const submitBtn = form.querySelector('.checkout-submit-btn');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-credit-card"></i> Confirmar Compra';
+    }
+}
+
+// Mostrar modal de confirmación de orden
+function showOrderConfirmationModal(orderData) {
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay active';
+    modal.innerHTML = `
+        <div class="modal-content order-confirmation-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-check-circle"></i> ¡Compra Confirmada!</h3>
+            </div>
+            <div class="modal-body">
+                <div class="order-info">
+                    <p><strong>Número de orden:</strong> ${orderData.orderId}</p>
+                    <p><strong>Total:</strong> ${orderData.total.toLocaleString()}</p>
+                    <p><strong>Estado:</strong> ${orderData.estado}</p>
+                    <p><strong>Fecha:</strong> ${new Date(orderData.fechaCreacion).toLocaleDateString()}</p>
+                </div>
+                <p class="order-message">
+                    Te hemos enviado un email de confirmación con los detalles de tu compra.
+                    Puedes seguir el estado de tu pedido en tu cuenta.
+                </p>
+                <button class="submit-btn" onclick="this.closest('.modal-overlay').remove()">
+                    <i class="fas fa-check"></i>
+                    Entendido
+                </button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
 }
 
 // ============================================
@@ -886,7 +1265,7 @@ function updateCartUI() {
     }
 }
 
-// Mostrar notificaciones (igual que en script.js)
+// Mostrar notificaciones
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
@@ -932,4 +1311,96 @@ function showNotification(message, type = 'info') {
             }
         }, 300);
     }, 4000);
+}jar login (igual que en script.js)
+async function handleLogin(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    if (!username || !password) {
+        showNotification('Por favor completa todos los campos', 'error');
+        return;
+    }
+    
+    try {
+        const submitBtn = e.target.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Ingresando...';
+        
+        await loginUser({ username, password });
+        
+        document.getElementById('loginModal').classList.remove('active');
+        showNotification(`¡Bienvenido, ${username}!`, 'success');
+        
+    } catch (error) {
+        showNotification('Error al iniciar sesión. Verifica tus credenciales.', 'error');
+    } finally {
+        const submitBtn = e.target.querySelector('.submit-btn');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Ingresar</span><i class="fas fa-sign-in-alt"></i>';
+    }
 }
+
+// Manejar búsqueda
+async function handleSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const query = searchInput.value.trim();
+    
+    currentFilters.search = query;
+    currentPage = 1;
+    
+    await loadProducts();
+}
+
+// Manejar filtro por categoría
+function handleCategoryFilter(e) {
+    if (e.target.type === 'checkbox' && e.target.checked) {
+        // Desmarcar otros checkboxes de categoría
+        const categoryCheckboxes = document.querySelectorAll('#categoryFilters input[type="checkbox"]');
+        categoryCheckboxes.forEach(cb => {
+            if (cb !== e.target) cb.checked = false;
+        });
+        
+        currentFilters.category = e.target.value;
+        currentPage = 1;
+        loadProducts();
+    } else if (e.target.type === 'checkbox' && !e.target.checked) {
+        currentFilters.category = '';
+        currentPage = 1;
+        loadProducts();
+    }
+}
+
+// Manejar filtro por marca
+function handleBrandFilter(e) {
+    if (e.target.type === 'checkbox' && e.target.checked) {
+        // Desmarcar otros checkboxes de marca
+        const brandCheckboxes = document.querySelectorAll('#brandFilters input[type="checkbox"]');
+        brandCheckboxes.forEach(cb => {
+            if (cb !== e.target) cb.checked = false;
+        });
+        
+        currentFilters.brand = e.target.value;
+        currentPage = 1;
+        loadProducts();
+    } else if (e.target.type === 'checkbox' && !e.target.checked) {
+        currentFilters.brand = '';
+        currentPage = 1;
+        loadProducts();
+    }
+}
+
+// Manejar filtro de precio
+function handlePriceFilter() {
+    const minPrice = document.getElementById('minPrice').value;
+    const maxPrice = document.getElementById('maxPrice').value;
+    
+    currentFilters.minPrice = minPrice ? parseFloat(minPrice) : null;
+    currentFilters.maxPrice = maxPrice ? parseFloat(maxPrice) : null;
+    currentPage = 1;
+    
+    loadProducts();
+}
+
+// Mane

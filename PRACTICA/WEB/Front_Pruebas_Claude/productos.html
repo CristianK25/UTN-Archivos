@@ -253,6 +253,291 @@
         </div>
     </footer>
 
+    <!-- Carrito Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Mi Carrito</h3>
+            <button class="cart-close-btn" onclick="closeCartSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-content">
+            <div id="emptyCartMessage" class="empty-cart-message">
+                <i class="fas fa-shopping-cart"></i>
+                <h4>Tu carrito está vacío</h4>
+                <p>Agrega algunos productos para continuar</p>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- Los items del carrito se cargarán aquí dinámicamente -->
+            </div>
+        </div>
+        
+        <div class="cart-footer" id="cartActions" style="display: none;">
+            <div class="cart-total">
+                <div class="total-label">Total:</div>
+                <div class="total-amount" id="cartTotal">$0</div>
+            </div>
+            <div class="cart-buttons">
+                <button class="clear-cart-btn" onclick="clearCart()">
+                    <i class="fas fa-trash"></i>
+                    Vaciar Carrito
+                </button>
+                <button class="checkout-btn" onclick="openCheckoutModal()">
+                    <i class="fas fa-credit-card"></i>
+                    Proceder al Pago
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Checkout -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-content checkout-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-credit-card"></i> Finalizar Compra</h3>
+                <button class="modal-close" onclick="closeCheckoutModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-content">
+                    <!-- Resumen del pedido -->
+                    <div class="checkout-section">
+                        <h4><i class="fas fa-list"></i> Resumen del Pedido</h4>
+                        <div class="checkout-items" id="checkoutItems">
+                            <!-- Los items se cargarán dinámicamente -->
+                        </div>
+                        <div class="checkout-total-section">
+                            <div class="total-row">
+                                <span class="total-label">Total a pagar:</span>
+                                <span class="total-amount" id="checkoutTotal">$0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de checkout -->
+                    <form class="checkout-form" id="checkoutForm" onsubmit="handleCheckout(event)">
+                        <!-- Información de envío -->
+                        <div class="checkout-section">
+                            <h4><i class="fas fa-shipping-fast"></i> Información de Envío</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName">Nombre Completo *</label>
+                                    <input type="text" id="fullName" name="fullName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Teléfono *</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Dirección *</label>
+                                <input type="text" id="address" name="address" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">Ciudad *</label>
+                                    <input type="text" id="city" name="city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="zipCode">Código Postal *</label>
+                                    <input type="text" id="zipCode" name="zipCode" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Método de pago -->
+                        <div class="checkout-section">
+                            <h4><i class="fas fa-credit-card"></i> Método de Pago</h4>
+                            <div class="payment-methods">
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="tarjeta" checked>
+                                    <span class="payment-checkmark"></span>
+                                    <div class="payment-info">
+                                        <i class="fas fa-credit-card"></i>
+                                        <span>Tarjeta de Crédito/Débito</span>
+                                    </div>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="transferencia">
+                                    <span class="payment-checkmark"></span>
+                                    <div class="payment-info">
+                                        <i class="fas fa-university"></i>
+                                        <span>Transferencia Bancaria</span>
+                                    </div>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="efectivo">
+                                    <span class="payment-checkmark"></span>
+                                    <div class="payment-info">
+                                        <i class="fas fa-money-bill"></i>
+                                        <span>Efectivo contra entrega</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Botón de confirmación -->
+                        <button type="submit" class="checkout-submit-btn">
+                            <i class="fas fa-credit-card"></i>
+                            Confirmar Compra
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (igual al de index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-microchip"></i>
+                        <span>TechRGB</span>
+                    </div>
+                    <p>Tu tienda especializada en componentes gaming y tecnología RGB.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Categorías</h4>
+                    <ul>
+                        <li><a href="#">Procesadores</a></li>
+                        <li><a href="#">Tarjetas Gráficas</a></li>
+                        <li><a href="#">Memorias RAM</a></li>
+                        <li><a href="#">Almacenamiento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Garantías</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechRGB. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrito Sidebar (igual al de index.html) -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Mi Carrito</h3>
+            <button class="cart-close-btn" onclick="closeCartSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-content">
+            <div id="emptyCartMessage" class="empty-cart-message">
+                <i class="fas fa-shopping-cart"></i>
+                <h4>Tu carrito está vacío</h4>
+                <p>Agrega algunos productos para continuar</p>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- Los items del carrito se cargarán aquí dinámicamente -->
+            </div>
+        </div>
+        
+        <div class="cart-footer" id="cartActions" style="display: none;">
+            <div class="cart-total">
+                <div class="total-label">Total:</div>
+                <div class="total-amount" id="cartTotal">$0</div>
+            </div>
+            <div class="cart-buttons">
+                <button class="clear-cart-btn" onclick="clearCart()">
+                    <i class="fas fa-trash"></i>
+                    Vaciar Carrito
+                </button>
+                <button class="checkout-btn" onclick="openCheckoutModal()">
+                    <i class="fas fa-credit-card"></i>
+                    Proceder al Pago
+                </button>
+            </div>
+        </div>  
+    </div>
+    <!-- Modal de Checkout (igual al de index.html) -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-content checkout-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-credit-card"></i> Finalizar Compra</h3>
+                <button class="modal-close" onclick="closeCheckoutModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body
+">
+                <div class="checkout-content">
+                    <!-- Resumen del pedido -->
+                    <div class="checkout-section">
+                        <h4><i class="fas fa-list"></i> Resumen del Pedido</h4>
+                        <div class="checkout-items" id="checkoutItems">
+                            <!-- Los items se cargarán dinámicamente -->
+                        </div>
+                        <div class="checkout-total-section">
+                            <div class="total-row">
+                                <span class="total-label">Total a pagar:</span>
+                                <span class="total-amount" id="checkoutTotal">$0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de checkout -->
+                    <form class="checkout-form" id="checkoutForm" onsubmit="handleCheckout(event)">
+                        <!-- Información de envío -->
+                        <div class="checkout-section">
+                            <h4><i class="fas fa-shipping-fast"></i> Información de Envío</h4>
+                            <div class="form-row">
+                                <div class="form-group
+">
+                                    <label for="fullName">Nombre Completo *</label>
+                                    <input type="text" id="fullName" name="fullName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Teléfono *</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="form-group
+">
+                                <label for="address">Dirección *</label>
+                                <input type="text" id="address" name="address" required>    
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">Ciudad *</label>
+                                    <input type="text" id="city" name="city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="zipCode">Código Postal *</label>
+                                    <input type="text" id="zipCode" name="zipCode" required>
+                                </div>
+                            </div>
+                                            <div class="form-footer">
+                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    <p>¿No tienes cuenta? <a href="#" class="register-link">Regístrate aquí</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="productos.js"></script>
 </body>
 </html>
+

@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "productos")
+@Table(name = "productos",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"nombre", "DTYPE"}))
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,6 +17,7 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nombre;
 
     @Column(length = 1000)
@@ -22,17 +25,11 @@ public class Producto {
 
     private String marca;
 
-    private String tipo;
-
-    private String tamaño;
-
     private Double precio;
 
     private Integer stock;
 
     private String imagenUrl;
-
-    private String fragancia;
 
     private boolean activo = true;
 }
